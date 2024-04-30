@@ -25,6 +25,20 @@ CREATE TABLE produto(
     estoque INT
 );
 
+CREATE TABLE endereco(
+	idEndereco INT AUTO_INCREMENT PRIMARY KEY,
+    nomeDestinatario VARCHAR(95),
+    cep CHAR(9),
+    rua VARCHAR(100),
+    numero VARCHAR(9),
+    complemento VARCHAR(50),
+    referencia VARCHAR(100),
+    bairro VARCHAR(45),
+    cidade VARCHAR(60),
+    estado CHAR(2)
+);
+
+
 CREATE TABLE pedido(
     idPedido INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(45),
