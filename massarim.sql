@@ -1,5 +1,3 @@
-DROP DATABASE massarim;
-
 CREATE DATABASE massarim;
 USE massarim;
 
@@ -10,8 +8,8 @@ senha VARCHAR(45),
 email VARCHAR(100),
 cpf CHAR(14),
 telefone CHAR(14),
-admin boolean,
-logado boolean
+dataNascimento DATE,
+admin INT
 );
 
 CREATE TABLE categorias(
