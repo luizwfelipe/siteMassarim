@@ -10,14 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Cadastrar</title>
-        <link href="styles/cadastro.css" rel="stylesheet" type="text/css"/>
+        <link href="styles/cadastrar.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <main>
             
             <form action="cadastro" method="POST">
                 <div class="container">
-                    <img class="logo" src="assets/logo-massarim-white-removebg-preview.png" alt="">
+                    <img class="logo" src="assets/logo-massarim.png" alt="">
                     <h1>CADASTRE-SE</h1>
                     <div class="input">
                         <label for="nome">Nome</label>
