@@ -61,15 +61,13 @@ public class UsuarioDAO {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone, dataNascimento, admin) VALUES (?, ?, ?, ?, ?, ?, 0)");
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone, dataNascimento, admin) VALUES (?, ?, ?, ?, ?, ?, 1)");
             stmt.setString(1, usuario.getNome());
             stmt.setString(2, usuario.getSenha());
             stmt.setString(3, usuario.getEmail());
             stmt.setString(4, usuario.getCpf());
             stmt.setString(5, usuario.getTelefone());
-            Date dataNascimentoPadrao = Date.valueOf("2020-12-20");
-            stmt.setDate(6, dataNascimentoPadrao);
-//PRECISO ARRUMAR A DATA DE NASCIMENTO!!!
+            stmt.setDate(6, usuario.getDataNascimento());
             stmt.executeUpdate();
             stmt.close();
             conexao.close();
@@ -84,7 +82,7 @@ public class UsuarioDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conexao.prepareStatement("SELECT * FROM usuario WHERE email = ? AND senha = ?");
+            stmt = conexao.prepareStatement("SELECT idUsuario, admin FROM usuario WHERE email = ? AND senha = ?");
             stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getSenha());
             rs = stmt.executeQuery();
@@ -126,7 +124,7 @@ public class UsuarioDAO {
 
             stmt.close();
             conexao.close();
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

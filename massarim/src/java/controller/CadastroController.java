@@ -74,7 +74,6 @@ public class CadastroController extends HttpServlet {
         String email = request.getParameter("email");
         String cpf = request.getParameter("cpf");
         String telefone = request.getParameter("telefone");
-        //Date dataNascimento = request.getParameter.("dataNascimento");
                 UsuarioDAO dao = new UsuarioDAO();
                 UsuarioDTO usuario = new UsuarioDTO();
                 usuario.setNome(nome);
@@ -82,7 +81,7 @@ public class CadastroController extends HttpServlet {
                 usuario.setEmail(email);
                 usuario.setCpf(cpf);
                 usuario.setTelefone(telefone);
-                //usuario.setDataNascimento(dataNascimento);
+                usuario.setDataNascimento(Date.valueOf(request.getParameter("dataNascimento")));
                 
                 try {
                     if (usuario.getNome().trim().equals("") || usuario.getSenha().trim().equals("") ||usuario.getEmail().trim().equals("") || usuario.getCpf().trim().equals("") || usuario.getTelefone().trim().equals("")) {

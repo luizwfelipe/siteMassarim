@@ -19,7 +19,7 @@
                     <img src="assets/massarimMODA.png" alt="">
                 </div>
                 <div class="form">
-                    <form action="login">
+                    <form action="login" method="post" id="form-login">
                         <div class="titulo">
                             <h1>Entrar</h1>
                         </div>
