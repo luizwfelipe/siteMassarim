@@ -1,6 +1,7 @@
 package model.dao;
 
 import conexao.Conexao;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class ProdutoDAO {
 
         try {
             conexao = Conexao.conectar();
-            stmt = conexao.prepareStatement("SELECT idProduto, nome, fkIdCategoria, descricao, preco, estoque FROM produto");
+            stmt = conexao.prepareStatement("SELECT * FROM produto");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ProdutoDTO produtos = new ProdutoDTO();
@@ -29,6 +30,12 @@ public class ProdutoDAO {
                 produtos.setDescricao(rs.getString("descricao"));
                 produtos.setPreco(rs.getFloat("preco"));
                 produtos.setEstoque(rs.getInt("estoque"));
+                
+                Blob imagemBlob = rs.getBlob("imagem");
+                if(imagemBlob != null){
+                    byte[] imagem = imagemBlob.getBytes(1,(int) imagemBlob.length());
+                    produtos.setImagem(imagem);
+                }
                 listaProduto.add(produtos);
             }
             rs.close();
@@ -63,6 +70,42 @@ public class ProdutoDAO {
     }
     
     
+    public List<ProdutoDTO> focarProduto(int focado){
+        List<ProdutoDTO> resultadoFoco = new ArrayList();
+        
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM produto WHERE idProduto = ?");
+            stmt.setInt(1, focado);
+            
+            rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                ProdutoDTO prod = new ProdutoDTO();
+                prod.setIdProduto(rs.getInt("idProduto"));
+                prod.setNome(rs.getString("nome"));
+                prod.setFkIdCategoria(rs.getInt("fkIdCategoria"));
+                prod.setDescricao(rs.getString("descricao"));
+                prod.setPreco(rs.getFloat("preco"));
+                prod.setEstoque(rs.getInt("estoque"));
+                prod.setImagem(rs.getBytes("imagem"));
+                
+                Blob imagemBlob = rs.getBlob("imagem");
+                if(imagemBlob != null){
+                    byte[] imagem = imagemBlob.getBytes(1,(int) imagemBlob.length());
+                    prod.setImagem(imagem);
+                }
+                resultadoFoco.add(prod);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return resultadoFoco;
+    }
+    
     public List<ProdutoDTO> buscaProdutos(String busca) {
         List<ProdutoDTO> resultadoBusca = new ArrayList();
 
@@ -71,7 +114,7 @@ public class ProdutoDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ? OR descricao LIKE ?");
+            stmt = conexao.prepareStatement("SELECT * FROM produto WHERE nome LIKE ? OR descricao LIKE ?");
             stmt.setString(1, busca);
             stmt.setString(2, busca);
             
@@ -103,7 +146,7 @@ public class ProdutoDAO {
             PreparedStatement stmt = null;
             ResultSet rs = null;
             
-            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE fkIdCategoria = ?");
+            stmt = conexao.prepareStatement("SELECT * FROM produto WHERE fkIdCategoria = ?");
             stmt.setInt(1, categoria);
             
             rs = stmt.executeQuery();

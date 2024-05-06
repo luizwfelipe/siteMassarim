@@ -9,6 +9,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ import model.dao.ProdutoDAO;
  *
  * @author Admin
  */
-@WebServlet(name = "ProdutoController", urlPatterns = {"/produtos","/cadastrar-produto","/home","/cadastrarProduto","/buscar-produtos"})
+@WebServlet(name = "ProdutoController", urlPatterns = {"/produtos", "/cadastrar-produto", "/home", "/cadastrarProduto", "/buscar-produtos","/produto-massarim"})
 @MultipartConfig
 public class ProdutoController extends HttpServlet {
 
@@ -47,35 +48,67 @@ public class ProdutoController extends HttpServlet {
         List<CategoriaDTO> categorias = categoriasDAO.read();
         request.setAttribute("categorias", categorias);
         String url = request.getServletPath();
-        if(url.equals("/cadastrar-produto")) {
+        if (url.equals("/cadastrar-produto")) {
             String nextPage = "/WEB-INF/jsp/cadastroProdutos.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        } else if(url.equals("/home")){
+        } else if (url.equals("/home")) {
             List<ProdutoDTO> produto = produtosDAO.readProdutos();
+            for (int i = 0; i < produto.size(); i++) {
+                    if (produto.get(i).getImagem() != null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
+                        produto.get(i).setImagemBase64(imagemBase64);
+
+                    }
+                }
             request.setAttribute("produto", produto);
             String nextPage = "/WEB-INF/jsp/index.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        
+
         } else if (url.equals("/buscar-produtos")) {
             String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
-                if (busca.equals("")) {
-                    String categoria = request.getParameter("cat");
-                    List<ProdutoDTO> produto = produtosDAO.buscaCategoria(Integer.parseInt(categoria));
-                    request.setAttribute("produto", produto);
-                } else {
-                    busca = "%" + busca + "%";
-                    List<ProdutoDTO> produto = produtosDAO.buscaProdutos(busca);
-                    request.setAttribute("produto", produto);
+            if (busca.equals("")) {
+                String categoria = request.getParameter("cat");
+                List<ProdutoDTO> produto = produtosDAO.buscaCategoria(Integer.parseInt(categoria));
+                for (int i = 0; i < produto.size(); i++) {
+                    if (produto.get(i).getImagem() != null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
+                        produto.get(i).setImagemBase64(imagemBase64);
+
+                    }
                 }
+                request.setAttribute("produto", produto);
+            } else {
+                busca = "%" + busca + "%";
+                List<ProdutoDTO> produto = produtosDAO.buscaProdutos(busca);
+                request.setAttribute("produto", produto);
+                for (int i = 0; i < produto.size(); i++) {
+                    if (produto.get(i).getImagem() != null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
+                        produto.get(i).setImagemBase64(imagemBase64);
+
+                    }
+                }
+            }
 
             String nextPage = "/WEB-INF/jsp/produtos.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-      }
+        }/*else if (url.equals("/produto-massarim")){
+            String nextPage = "/WEB-INF/jsp/produto-massarim.jsp";
+            int idProduto = Integer.parseInt(request.getParameter("identificacao"));
+            ProdutoDAO proDAO = new ProdutoDAO();
+            ProdutoDTO prod = proDAO.focarProduto(idProduto);
+            if (prod.getImagem() != null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
+                        produto.get(i).setImagemBase64(imagemBase64);
+                    }
+            request.setAttribute("produto",produto);
+            String nextPage = "/WEB-INF/jsp/produtos.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);*/
     }
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -102,30 +135,30 @@ public class ProdutoController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
-    String url = request.getServletPath();
-    if (url.equals("/cadastrarProduto")) {
-        ProdutoDTO newProduto = new ProdutoDTO();
-        newProduto.setNome(request.getParameter("nome"));
-        
-        newProduto.setDescricao(request.getParameter("descricao"));
-        newProduto.setFkIdCategoria(Integer.parseInt(request.getParameter("fkIdCategoria")));
-        newProduto.setPreco(Float.parseFloat(request.getParameter("preco")));
-        Part filePart = request.getPart("imagem");
-        InputStream istream = filePart.getInputStream();
-        ByteArrayOutputStream byteA = new ByteArrayOutputStream();
-        byte[] img = new byte[4096];
-        int byteRead = -1;
-        while((byteRead = istream.read(img)) != -1 ) {
-            byteA.write(img, 0, byteRead);
+            throws ServletException, IOException {
+        String url = request.getServletPath();
+        if (url.equals("/cadastrarProduto")) {
+            ProdutoDTO newProduto = new ProdutoDTO();
+            newProduto.setNome(request.getParameter("nome"));
+
+            newProduto.setDescricao(request.getParameter("descricao"));
+            newProduto.setFkIdCategoria(Integer.parseInt(request.getParameter("fkIdCategoria")));
+            newProduto.setPreco(Float.parseFloat(request.getParameter("preco")));
+            Part filePart = request.getPart("imagem");
+            InputStream istream = filePart.getInputStream();
+            ByteArrayOutputStream byteA = new ByteArrayOutputStream();
+            byte[] img = new byte[4096];
+            int byteRead = -1;
+            while ((byteRead = istream.read(img)) != -1) {
+                byteA.write(img, 0, byteRead);
+            }
+            byte[] imgBytes = byteA.toByteArray();
+            newProduto.setImagem(imgBytes);
+            ProdutoDAO produtosD = new ProdutoDAO();
+            produtosD.create(newProduto);
+            response.sendRedirect("./home");
         }
-        byte[] imgBytes = byteA.toByteArray();
-        newProduto.setImagem(imgBytes);
-        ProdutoDAO produtosD = new ProdutoDAO();
-        produtosD.create(newProduto);
-        response.sendRedirect("./home");
     }
-}
 
     /**
      * Returns a short description of the servlet.

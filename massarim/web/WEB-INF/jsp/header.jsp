@@ -24,7 +24,7 @@
                 </div>
                 <div class="down">
                     <div class="logo">
-                        <img src="assets/logo-massarim.png" alt="menu">
+                        <a href="./home"><img src="assets/logo-massarim.png" alt="menu"></a>
                     </div>
                     <div class="categorias">
                         <c:forEach items="${categorias}" var="categoria" >

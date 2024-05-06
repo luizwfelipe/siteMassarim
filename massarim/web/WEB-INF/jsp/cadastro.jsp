@@ -17,7 +17,7 @@
         <main>
             <div class="container">
                 <div class="image">
-                    <img src="assets/eagleMassarim.png" alt="">
+                    <img src="assets/massarimMODA.png" alt="">
                 </div>
                 <div class="form">
                     <form action="cadastrar" method="POST">

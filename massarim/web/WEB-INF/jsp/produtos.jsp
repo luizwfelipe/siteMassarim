@@ -10,23 +10,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="styles/produtos.css">
         <title>JSP Page</title>
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
     <main>
-        <c:forEach var="produtos" items="${produto}">
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${produtos.nome}</h5>
-                        <p class="card-text">Categoria: ${produtos.fkIdCategoria}</p>
-                        <p class="card-text">Valor: R$ ${produtos.preco}</p>
-                        <p class="card-text">Descrição: ${produtos.descricao}</p>
-                    </div>
+        <div class="containerProduto">
+            <c:forEach var="produtos" items="${produto}">
+            <div class="card">
+                <div class="imagemProduto">
+                    <img src="assets/fotoTestes.jpg" alt="">
+                </div>
+                <div class="card-info">
+                    <h5 class="nome-produto">${produtos.nome}</h5>
+                    <!--<p class="cat-produto"> ${produtos.fkIdCategoria}</p>-->
+                    <p class="preco-produto">R$ ${produtos.preco}</p>
                 </div>
             </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
 
     </main>
     </body>

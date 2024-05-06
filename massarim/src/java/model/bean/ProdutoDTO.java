@@ -17,11 +17,12 @@ public class ProdutoDTO {
     private float preco;
     private int estoque;
     private byte[] imagem;
+    private String  imagemBase64;
 
     public ProdutoDTO() {
     }
 
-    public ProdutoDTO(int idProduto, String nome, int fkIdCategoria, String descricao, float preco, int estoque, byte[] imagem) {
+    public ProdutoDTO(int idProduto, String nome, int fkIdCategoria, String descricao, float preco, int estoque, byte[] imagem, String imagemBase64) {
         this.idProduto = idProduto;
         this.nome = nome;
         this.fkIdCategoria = fkIdCategoria;
@@ -29,6 +30,7 @@ public class ProdutoDTO {
         this.preco = preco;
         this.estoque = estoque;
         this.imagem = imagem;
+        this.imagemBase64 = imagemBase64;
     }
 
     public int getIdProduto() {
@@ -87,5 +89,14 @@ public class ProdutoDTO {
         this.imagem = imagem;
     }
 
+    public String getImagemBase64() {
+        return imagemBase64;
+    }
+
+    public void setImagemBase64(String imagemBase64) {
+        this.imagemBase64 = imagemBase64;
+    }
+
+   
     
 }
