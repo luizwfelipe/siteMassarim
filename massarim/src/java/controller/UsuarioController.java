@@ -7,9 +7,10 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,9 +19,10 @@ import model.dao.UsuarioDAO;
 
 /**
  *
- * @author Senai
+ * @author Admin
  */
-public class LoginController extends HttpServlet {
+@WebServlet(name = "UsuarioController", urlPatterns = {"/cadastrar", "/cadastro", "/login", "/logar"})
+public class UsuarioController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,10 +36,16 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String nextPage = "/WEB-INF/jsp/login.jsp";
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-        dispatcher.forward(request, response);
+        String url = request.getServletPath();
+        if (url.equals("/cadastrar")) {
+            String nextPage = "/WEB-INF/jsp/cadastro.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        } else if (url.equals("/login")) {
+            String nextPage = "/WEB-INF/jsp/login.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,7 +60,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);        
+        processRequest(request, response);
     }
 
     /**
@@ -66,38 +74,45 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-processRequest(request, response);    
         String url = request.getServletPath();
-        if (url.equals("/login")) {
-            String nextPage = "/WEB-INF/jsp/index.jsp";
+        if (url.equals("/cadastrar")) {
+            System.out.println("Está no dopost");
             UsuarioDTO user = new UsuarioDTO();
-            UsuarioDAO valida = new UsuarioDAO();
+            user.setNome(request.getParameter("nome").equals("") ? "" : request.getParameter("nome"));
+            user.setSenha(request.getParameter("senha"));
+            user.setEmail(request.getParameter("email"));
+            user.setCpf(request.getParameter("cpf"));
+            user.setTelefone(request.getParameter("telefone"));
+            user.setDataNascimento(Date.valueOf(request.getParameter("dataNascimento")));
 
+
+            UsuarioDAO userCreate = new UsuarioDAO();
+            userCreate.cadastrarUsuario(user);
+
+            response.sendRedirect("./login");
+        } else if (url.equals("/logar")) {
+            
+            UsuarioDTO user = new UsuarioDTO();
             user.setEmail(request.getParameter("email"));
             user.setSenha(request.getParameter("senha"));
 
-            try {
-                UsuarioDTO userAutenticado = valida.login(user);
-
-                if (userAutenticado != null && !userAutenticado.getEmail().isEmpty()) {
-                    nextPage = "WEB-INF/jsp/index.jsp";
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                    dispatcher.forward(request, response);
-                    
+            UsuarioDAO userLogin = new UsuarioDAO();
+            user = userLogin.login(user);
+            if (user.getIdUsuario() > 0) {
+                if (user.getAdmin() == 1) {
+                    response.sendRedirect("./cadastrar-produto");
                 } else {
-                    nextPage = "/WEB-INF/jsp/login.jsp";
-                    request.setAttribute("errorMessage", "Email ou senha inválidos");
-                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-                    dispatcher.forward(request, response);
+                    response.sendRedirect("./home");
                 }
-            } catch (Exception e) {
-                nextPage = "/WEB-INF/jsp/login.jsp";
-                request.setAttribute("errorMessage", "Email ou senha inválidos");
+            } else {
+                
+                //mudar para uma notificação!!!
+                request.setAttribute("erroMensagem", "Erro ao realizar Login");
+                String nextPage = "/WEB-INF/jsp/problemaLogin.jsp";
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                 dispatcher.forward(request, response);
             }
-        } else {
-            processRequest(request, response);
+
         }
     }
 

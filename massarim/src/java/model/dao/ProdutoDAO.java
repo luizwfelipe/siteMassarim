@@ -19,58 +19,114 @@ public class ProdutoDAO {
 
         try {
             conexao = Conexao.conectar();
-            stmt = conexao.prepareStatement("SELECT idProduto, nome, categoria, descricao, preco, estoque FROM produto");
+            stmt = conexao.prepareStatement("SELECT idProduto, nome, fkIdCategoria, descricao, preco, estoque FROM produto");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ProdutoDTO produtos = new ProdutoDTO();
                 produtos.setIdProduto(rs.getInt("idProduto"));
                 produtos.setNome(rs.getString("nome"));
-                produtos.setCategoria(rs.getString("categoria"));
+                produtos.setFkIdCategoria(rs.getInt("fkIdCategoria"));
                 produtos.setDescricao(rs.getString("descricao"));
                 produtos.setPreco(rs.getFloat("preco"));
                 produtos.setEstoque(rs.getInt("estoque"));
                 listaProduto.add(produtos);
             }
+            rs.close();
+            stmt.close();
+            conexao.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conexao != null) conexao.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
         }
         return listaProduto;
     }
     
     public void create(ProdutoDTO p) {
-
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-            stmt = conexao.prepareStatement("INSERT INTO produto (nome, categoria, descricao, preco, estoque) VALUES (?, ?, ? ,? ,?)");
-            stmt.setString(1, p.getNome());
-            stmt.setString(2, p.getCategoria());
-            stmt.setString(3, p.getDescricao());
-            stmt.setFloat(4, p.getPreco());
-            stmt.setInt(5, p.getEstoque());
             
+            stmt = conexao.prepareStatement("INSERT INTO produto (nome, fkIdCategoria, preco, descricao, estoque, imagem) VALUES (?, ?, ?, ?, ?, ?)");
+            
+            stmt.setString(1, p.getNome());
+            stmt.setInt(2, p.getFkIdCategoria());
+            stmt.setFloat(3, p.getPreco());
+            stmt.setString(4, p.getDescricao());
+            stmt.setInt(5, p.getEstoque());
+            stmt.setBytes(6, p.getImagem());
             
             stmt.executeUpdate();
-
             stmt.close();
             conexao.close();
-            
-            JOptionPane.showMessageDialog(null, "Produto criado com sucesso!");
-            
-        } catch (SQLException e) {
+        } catch(SQLException e) {
             e.printStackTrace();
         }
     }
     
-    public void delete(int idProduto) {
+    
+    public List<ProdutoDTO> buscaProdutos(String busca) {
+        List<ProdutoDTO> resultadoBusca = new ArrayList();
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ? OR descricao LIKE ?");
+            stmt.setString(1, busca);
+            stmt.setString(2, busca);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                ProdutoDTO prod = new ProdutoDTO();
+                prod.setIdProduto(rs.getInt("idProduto"));
+                prod.setNome(rs.getString("nome"));
+                prod.setFkIdCategoria(rs.getInt("fkIdCategoria"));
+                prod.setDescricao(rs.getString("descricao"));
+                prod.setPreco(rs.getFloat("preco"));
+                prod.setEstoque(rs.getInt("estoque"));
+                prod.setImagem(rs.getBytes("imagem"));
+                
+                resultadoBusca.add(prod);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultadoBusca;
+    }
+    
+    public List<ProdutoDTO> buscaCategoria (int categoria) {
+        List<ProdutoDTO> resultadoBusca = new ArrayList();
+
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE fkIdCategoria = ?");
+            stmt.setInt(1, categoria);
+            
+            rs = stmt.executeQuery();
+            
+            while(rs.next()) {
+                ProdutoDTO prod = new ProdutoDTO();
+                prod.setIdProduto(rs.getInt("idProduto"));
+                prod.setNome(rs.getString("nome"));
+                prod.setFkIdCategoria(rs.getInt("fkIdCategoria"));
+                prod.setDescricao(rs.getString("descricao"));
+                prod.setPreco(rs.getFloat("preco"));
+                prod.setEstoque(rs.getInt("estoque"));
+                prod.setImagem(rs.getBytes("imagem"));
+                
+                resultadoBusca.add(prod);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultadoBusca;
+    }
+    
+    /*public void delete(int idProduto) {
     try {
         Connection conexao = Conexao.conectar();
         PreparedStatement stmt = conexao.prepareStatement("DELETE FROM produto WHERE idProduto = ?");
@@ -84,6 +140,35 @@ public class ProdutoDAO {
     }
 }
     
+    
+    public List<ProdutoDTO> buscar(String busca){
+        List<ProdutoDTO> resultado = new ArrayList();
+        
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM produtos WHERE nome LIKE ? OR descricao LIKE ?");
+            stmt.setString(1, busca);
+            stmt.setString(2, busca);
+            
+            while(rs.next()){
+                ProdutoDTO produto = new ProdutoDTO();
+                produto.setIdProduto(rs.getInt("idProduto"));
+                produto.setNome(rs.getString("nome"));
+                produto.setFkIdCategoria(rs.getInt("fkIdCategoria"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setPreco(rs.getFloat("preco"));
+                produto.setImagem(rs.getBytes("imagem"));
+            }
+        }catch(SQLException e){
+            
+        }
+        return resultado;
+    }
+    
+    
     public void update(ProdutoDTO p) {
         try {
             Connection conexao = Conexao.conectar();
@@ -92,7 +177,6 @@ public class ProdutoDAO {
             stmt = conexao.prepareStatement("UPDATE produto SET nome = ?, descricao = ?, preco = ?, estoque = ?, categoria = ? WHERE idProduto = ? ");
 
             stmt.setString(1, p.getNome());
-            stmt.setString(2, p.getCategoria());
             stmt.setString(3, p.getDescricao());
             stmt.setFloat(4, p.getPreco());
             stmt.setInt(5, p.getEstoque());
@@ -160,7 +244,7 @@ public class ProdutoDAO {
                 ex.printStackTrace();
             }
         }
-    }
+    }*/
   
 }
 

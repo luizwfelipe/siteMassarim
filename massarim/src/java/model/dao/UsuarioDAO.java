@@ -57,26 +57,30 @@ public class UsuarioDAO {
         return listaUsuarios;
     }
     
-    public void create(UsuarioDTO usuario) {
+    public void cadastrarUsuario(UsuarioDTO user) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
-            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone, dataNascimento, admin) VALUES (?, ?, ?, ?, ?, ?, 1)");
-            stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getSenha());
-            stmt.setString(3, usuario.getEmail());
-            stmt.setString(4, usuario.getCpf());
-            stmt.setString(5, usuario.getTelefone());
-            stmt.setDate(6, usuario.getDataNascimento());
+            
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone, dataNascimento, admin) VALUES (?, ?, ?, ?, ?, ?, 2)");
+            stmt.setString(1, user.getNome());
+            stmt.setString(2, user.getSenha());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, user.getCpf());
+            stmt.setString(5, user.getTelefone());
+            stmt.setDate(6, user.getDataNascimento());
+            
+            
             stmt.executeUpdate();
+            
             stmt.close();
             conexao.close();
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    public UsuarioDTO login(UsuarioDTO user) {
-        UsuarioDTO loginUser = new UsuarioDTO();
+   public UsuarioDTO login(UsuarioDTO user) {
         try {
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
@@ -85,24 +89,20 @@ public class UsuarioDAO {
             stmt = conexao.prepareStatement("SELECT idUsuario, admin FROM usuario WHERE email = ? AND senha = ?");
             stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getSenha());
+            
             rs = stmt.executeQuery();
-            
-            if(rs.next()) {
-                loginUser.setIdUsuario(rs.getInt("idUsuario"));
-                loginUser.setEmail(rs.getString("email"));
-                loginUser.setSenha(rs.getString("senha"));
+            if(rs.next()){
+                user.setIdUsuario(rs.getInt("idUsuario"));
+                user.setAdmin(rs.getInt("admin"));
             }
-            
             rs.close();
             stmt.close();
             conexao.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            loginUser.setIdUsuario(0);
-            loginUser.setEmail("");
-            loginUser.setSenha("");
         }
-        return loginUser;
+        
+        return user;
     }
 
     

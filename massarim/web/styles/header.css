@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Buenard:wght@400;700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lexend+Deca:wght@100..900&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-weight: 500;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-image: linear-gradient(to bottom, #0000006e 60%, #c8c8c800 100%);
+    transition: background-image 0.5s ease-out, 0.5s;
+}
+
+.up, .down{
+    display: flex;
+}
+
+.up{
+    background-color: #202020;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1vh;
+}
+
+.up .inform p{
+    color: #dfdfdf;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+    font-weight: 800;
+    font-size: 100%;
+}
+
+.up .user-bag{
+    display: flex;
+    justify-content: space-around;
+
+    font-size: 1.2vw;
+}
+
+.user-bag .bag{
+    margin-inline: 25%;
+    cursor: pointer;
+}
+
+.user-bag .user{
+    cursor: pointer;
+}
+
+/*parte do informativo/login/sacola acima!*/
+
+.down {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    align-items: center;
+    justify-content: space-between;
+    padding: auto;
+}
+
+.down .logo{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+}
+
+.logo img{
+    width: 70%;
+}
+
+.down .categorias{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.categorias a{
+    text-decoration: none;
+    color: #202020;
+    font-weight: 500;
+    margin-inline: 3%;
+    font-family: 'Libre Bodoni', 'Bodoni Moda', 'Buenard', serif, Tahoma, Geneva, Verdana;
+    font-size: 120%;
+}
+
+.down .search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.d-flex{
+    display: flex;
+}
+.search input {
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #313131;
+    transition: 1s;
+}
+
+
+
+.search input:focus {
+    outline: none;
+}
+
+.search .btnPesquisa{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #313131;
+    transition: 1s;
+}
+
+
+header:hover{
+    background-image: none;
+    background-color: #eeeeee;
+    color:#202020;
+}
