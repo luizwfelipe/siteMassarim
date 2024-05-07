@@ -95,19 +95,20 @@ public class ProdutoController extends HttpServlet {
             String nextPage = "/WEB-INF/jsp/produtos.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        }/*else if (url.equals("/produto-massarim")){
+        }else if (url.equals("/produto-massarim")){
             String nextPage = "/WEB-INF/jsp/produto-massarim.jsp";
-            int idProduto = Integer.parseInt(request.getParameter("identificacao"));
+            int idProduto = Integer.parseInt(request.getParameter("focado"));
             ProdutoDAO proDAO = new ProdutoDAO();
-            ProdutoDTO prod = proDAO.focarProduto(idProduto);
-            if (prod.getImagem() != null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
-                        produto.get(i).setImagemBase64(imagemBase64);
+            ProdutoDTO produto = proDAO.focarProduto(idProduto);
+            if (produto.getImagem() != null) {
+                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.getImagem());
+                        produto.setImagemBase64(imagemBase64);
                     }
-            request.setAttribute("produto",produto);
-            String nextPage = "/WEB-INF/jsp/produtos.jsp";
+
+                            request.setAttribute("produto", produto);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);*/
+            dispatcher.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

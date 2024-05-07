@@ -18,7 +18,7 @@
                 <div class="up">
                     <div class="inform"><p>ENVIO PARA TODO O BRASIL &#x1F69A;</p></div>
                     <div class="user-bag">
-                        <div class="user"><i class="fa-regular fa-user" style="color: #dfdfdf;"></i></div>
+                        <div class="user"><a href="./login"><i class="fa-regular fa-user" style="color: #dfdfdf;"></i></a></div>
                         <div class="bag"><i class="fa-solid fa-bag-shopping" style="color: #dfdfdf;"></i></div>
                     </div>
                 </div>

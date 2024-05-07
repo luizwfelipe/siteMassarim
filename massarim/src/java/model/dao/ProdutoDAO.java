@@ -70,8 +70,8 @@ public class ProdutoDAO {
     }
     
     
-    public List<ProdutoDTO> focarProduto(int focado){
-        List<ProdutoDTO> resultadoFoco = new ArrayList();
+    public ProdutoDTO focarProduto(int focado){
+        ProdutoDTO prod = new ProdutoDTO();
         
         try{
             Connection conexao = Conexao.conectar();
@@ -84,7 +84,6 @@ public class ProdutoDAO {
             rs = stmt.executeQuery();
             
             if(rs.next()) {
-                ProdutoDTO prod = new ProdutoDTO();
                 prod.setIdProduto(rs.getInt("idProduto"));
                 prod.setNome(rs.getString("nome"));
                 prod.setFkIdCategoria(rs.getInt("fkIdCategoria"));
@@ -98,12 +97,12 @@ public class ProdutoDAO {
                     byte[] imagem = imagemBlob.getBytes(1,(int) imagemBlob.length());
                     prod.setImagem(imagem);
                 }
-                resultadoFoco.add(prod);
+        
             }
         }catch (SQLException e){
             e.printStackTrace();
         }
-        return resultadoFoco;
+        return prod;
     }
     
     public List<ProdutoDTO> buscaProdutos(String busca) {

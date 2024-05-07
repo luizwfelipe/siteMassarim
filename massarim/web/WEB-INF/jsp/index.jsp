@@ -13,15 +13,17 @@
     </head>
 
     <body>
-        <jsp:include page="header.jsp"></jsp:include>
+            <jsp:include page="header.jsp"></jsp:include>
+
     <main>
         <section>
             <img src="assets/massarim-fundo-home (1).png" alt="">
         </section>
                 <div class="containerProduto">
                     <c:forEach var="produtos" items="${produto}">
-                        <a href="./produto-massarim?identificacao=${produto.idProduto}">
+
                     <div class="card">
+                        <a href="./produto-massarim?focado=${produtos.idProduto}">
                         <div class="imagemProduto">
                             <img src="data:image/jpeg;base64,${produtos.imagemBase64}" alt="${produtos.nome}">
                         </div>
