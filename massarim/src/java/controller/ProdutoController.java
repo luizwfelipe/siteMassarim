@@ -6,9 +6,13 @@
 package controller;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -54,13 +58,13 @@ public class ProdutoController extends HttpServlet {
             dispatcher.forward(request, response);
         } else if (url.equals("/home")) {
             List<ProdutoDTO> produto = produtosDAO.readProdutos();
-            for (int i = 0; i < produto.size(); i++) {
+            /*for (int i = 0; i < produto.size(); i++) {
                     if (produto.get(i).getImagem() != null) {
                         String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
                         produto.get(i).setImagemBase64(imagemBase64);
 
                     }
-                }
+                }*/
             request.setAttribute("produto", produto);
             String nextPage = "/WEB-INF/jsp/index.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
@@ -71,25 +75,25 @@ public class ProdutoController extends HttpServlet {
             if (busca.equals("")) {
                 String categoria = request.getParameter("cat");
                 List<ProdutoDTO> produto = produtosDAO.buscaCategoria(Integer.parseInt(categoria));
-                for (int i = 0; i < produto.size(); i++) {
+                /*for (int i = 0; i < produto.size(); i++) {
                     if (produto.get(i).getImagem() != null) {
                         String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
                         produto.get(i).setImagemBase64(imagemBase64);
 
                     }
-                }
+                }*/
                 request.setAttribute("produto", produto);
             } else {
                 busca = "%" + busca + "%";
                 List<ProdutoDTO> produto = produtosDAO.buscaProdutos(busca);
                 request.setAttribute("produto", produto);
-                for (int i = 0; i < produto.size(); i++) {
-                    if (produto.get(i).getImagem() != null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
-                        produto.get(i).setImagemBase64(imagemBase64);
+                //for (int i = 0; i < produto.size(); i++) {
+                //    if (produto.get(i).getImagem() != null) {
+                 //       String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
+                   //     produto.get(i).setImagemBase64(imagemBase64);
 
-                    }
-                }
+                    //}
+                //}
             }
 
             String nextPage = "/WEB-INF/jsp/produtos.jsp";
@@ -100,10 +104,6 @@ public class ProdutoController extends HttpServlet {
             int idProduto = Integer.parseInt(request.getParameter("focado"));
             ProdutoDAO proDAO = new ProdutoDAO();
             ProdutoDTO produto = proDAO.focarProduto(idProduto);
-            if (produto.getImagem() != null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.getImagem());
-                        produto.setImagemBase64(imagemBase64);
-                    }
 
                             request.setAttribute("produto", produto);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
@@ -146,18 +146,27 @@ public class ProdutoController extends HttpServlet {
             newProduto.setFkIdCategoria(Integer.parseInt(request.getParameter("fkIdCategoria")));
             newProduto.setPreco(Float.parseFloat(request.getParameter("preco")));
             Part filePart = request.getPart("imagem");
-            InputStream istream = filePart.getInputStream();
-            ByteArrayOutputStream byteA = new ByteArrayOutputStream();
-            byte[] img = new byte[4096];
-            int byteRead = -1;
-            while ((byteRead = istream.read(img)) != -1) {
-                byteA.write(img, 0, byteRead);
+    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        if (fileName != null && !fileName.isEmpty()) {
+            String basePath = getServletContext().getRealPath("/") + "assets";
+            File uploads = new File(basePath);
+            if (!uploads.exists()) {
+                uploads.mkdirs();
             }
-            byte[] imgBytes = byteA.toByteArray();
-            newProduto.setImagem(imgBytes);
-            ProdutoDAO produtosD = new ProdutoDAO();
-            produtosD.create(newProduto);
-            response.sendRedirect("./home");
+            File file = new File(uploads, fileName);
+
+            try (InputStream input = filePart.getInputStream()) {
+                Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            newProduto.setImagem("assets/" + fileName);
+        } else {
+            newProduto.setImagem(null);
+        }
+    ProdutoDAO produtosD = new ProdutoDAO();
+    produtosD.create(newProduto);
+    response.sendRedirect("./home");
         }
     }
 

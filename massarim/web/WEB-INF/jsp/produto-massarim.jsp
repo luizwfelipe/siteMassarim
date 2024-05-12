@@ -18,7 +18,7 @@
         <main>
             <div class="container">
                 <div class="imagens">
-                    <img src="data:image/jpeg;base64,${produto.imagemBase64}" alt="${produto.nome}">                    
+                    <img src="${produto.imagem}" alt="${produto.nome}">             
                 </div>
                 <div class="info">
                     <div class="nome-preco">

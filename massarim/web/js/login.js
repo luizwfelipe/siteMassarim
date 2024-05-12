@@ -1,13 +1,13 @@
-const form = document.getElementById("form-login");
+const form = document.getElementById("form");
 
 form.addEventListener("submit",function(event){
     event.preventDefault();
 
-    const usuario = document.getElementById("usuario").value.trim();
+    const email = document.getElementById("email").value.trim();
     const senha = document.getElementById("senha").value.trim();
 
-    if(usuario ==="" || senha === ""){
-        alert("Usuário e Senha não preenchidos!")
+    if(email ==="" || senha === ""){
+        alert("Usuário e Senha não preenchidos!");
     }else{
         form.onsubmit();
     }

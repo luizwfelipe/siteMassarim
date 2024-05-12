@@ -25,7 +25,7 @@
                     <div class="card">
                         <a href="./produto-massarim?focado=${produtos.idProduto}">
                         <div class="imagemProduto">
-                            <img src="data:image/jpeg;base64,${produtos.imagemBase64}" alt="${produtos.nome}">
+                            <img src="${produtos.imagem}" alt="${produtos.nome}">
                         </div>
                         <div class="card-info">
                             <h5 class="nome-produto">${produtos.nome}</h5>

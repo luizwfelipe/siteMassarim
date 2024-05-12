@@ -30,12 +30,7 @@ public class ProdutoDAO {
                 produtos.setDescricao(rs.getString("descricao"));
                 produtos.setPreco(rs.getFloat("preco"));
                 produtos.setEstoque(rs.getInt("estoque"));
-                
-                Blob imagemBlob = rs.getBlob("imagem");
-                if(imagemBlob != null){
-                    byte[] imagem = imagemBlob.getBytes(1,(int) imagemBlob.length());
-                    produtos.setImagem(imagem);
-                }
+                produtos.setImagem(rs.getString("imagem"));
                 listaProduto.add(produtos);
             }
             rs.close();
@@ -59,7 +54,7 @@ public class ProdutoDAO {
             stmt.setFloat(3, p.getPreco());
             stmt.setString(4, p.getDescricao());
             stmt.setInt(5, p.getEstoque());
-            stmt.setBytes(6, p.getImagem());
+            stmt.setString(6, p.getImagem());
             
             stmt.executeUpdate();
             stmt.close();
@@ -90,13 +85,8 @@ public class ProdutoDAO {
                 prod.setDescricao(rs.getString("descricao"));
                 prod.setPreco(rs.getFloat("preco"));
                 prod.setEstoque(rs.getInt("estoque"));
-                prod.setImagem(rs.getBytes("imagem"));
-                
-                Blob imagemBlob = rs.getBlob("imagem");
-                if(imagemBlob != null){
-                    byte[] imagem = imagemBlob.getBytes(1,(int) imagemBlob.length());
-                    prod.setImagem(imagem);
-                }
+                prod.setImagem(rs.getString("imagem"));
+
         
             }
         }catch (SQLException e){
@@ -127,7 +117,7 @@ public class ProdutoDAO {
                 prod.setDescricao(rs.getString("descricao"));
                 prod.setPreco(rs.getFloat("preco"));
                 prod.setEstoque(rs.getInt("estoque"));
-                prod.setImagem(rs.getBytes("imagem"));
+                prod.setImagem(rs.getString("imagem"));
                 
                 resultadoBusca.add(prod);
             }
@@ -158,7 +148,7 @@ public class ProdutoDAO {
                 prod.setDescricao(rs.getString("descricao"));
                 prod.setPreco(rs.getFloat("preco"));
                 prod.setEstoque(rs.getInt("estoque"));
-                prod.setImagem(rs.getBytes("imagem"));
+                prod.setImagem(rs.getString("imagem"));
                 
                 resultadoBusca.add(prod);
             }

@@ -40,7 +40,7 @@
                         </div>
                         <div class="input">
                             <label for="telefone">Telefone</label>
-                            <input type="text" name="telefone" id="telefone" placeholder="Digite seu telefone..." required maxlength="14">
+                            <input type="text" name="telefone" id="telefone" placeholder="Digite seu telefone..." required maxlength="15">
                         </div>
                         <div class="input">
                             <label for="dataNascimento">Data de Nascimento</label>
@@ -52,6 +52,6 @@
                 </div>
             </div>
         </main>
-        
+        <script src="js/cadastro.js"></script>
     </body>
 </html>
