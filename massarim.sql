@@ -8,7 +8,7 @@ nome VARCHAR(100),
 senha VARCHAR(45),
 email VARCHAR(100),
 cpf CHAR(14),
-telefone CHAR(14),
+telefone CHAR(15),
 dataNascimento DATE,
 admin INT NOT NULL DEFAULT 2
 );
@@ -17,14 +17,21 @@ CREATE TABLE categorias(
     idCategorias INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(40)
 );
+
+CREATE TABLE tamanho(
+	idTamanho INT AUTO_INCREMENT PRIMARY KEY,
+    tamanho VARCHAR(40)
+    );
+
 CREATE TABLE produto(
     idProduto INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(45),
     fkIdCategoria INT,
+    fkIdTamanho INT,
     descricao TEXT,
     preco FLOAT,
     estoque INT,
-    imagem longblob
+    imagem VARCHAR(255)
 );
 
 CREATE TABLE endereco(
