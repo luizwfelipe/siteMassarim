@@ -39,5 +39,23 @@
                     </div>
                 </div>
         </header>
+
+        <!--<div class="bag">
+            <div class="bag-corpo">
+                <h3 class="bag-title">minha sacola</h3>
+                <div class="bag-produto">
+                    <div class="produto-img">
+                    </div>
+                    <div class="produto-info"></div>
+                    <div class="produto-delete"></div>
+                </div>
+                <div class="checkout">
+                    <h3>Total: </h3>
+                    <div class="btnCheckout">
+                        <button>checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
     </body>
 </html>

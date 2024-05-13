@@ -24,5 +24,10 @@ main{
     height: 100%; 
     max-width: 50vw;
     max-height: 60vh; 
-    overflow: hidden; 
 }
+
+.imagens img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+   }
