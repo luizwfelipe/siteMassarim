@@ -40,22 +40,22 @@
                 </div>
         </header>
 
-        <!--<div class="bag">
-            <div class="bag-corpo">
-                <h3 class="bag-title">minha sacola</h3>
-                <div class="bag-produto">
-                    <div class="produto-img">
-                    </div>
-                    <div class="produto-info"></div>
-                    <div class="produto-delete"></div>
+        <div class="bag">
+            
+            <div id="bg-bag">
+                
+            </div>
+            <div id="container-bag">
+                <div class="head-bag">
+                    <h3 id="titulo">sacola</h3>
+                    <button>fechar</button>
                 </div>
-                <div class="checkout">
-                    <h3>Total: </h3>
-                    <div class="btnCheckout">
-                        <button>checkout</button>
-                    </div>
+                <div id="container-prod"></div>
+                <div class="foot-bag">
+                    <p>Total: </p>
+                    <button id="checkcout">checkout</button>
                 </div>
             </div>
-        </div>-->
+        </div>
     </body>
 </html>
