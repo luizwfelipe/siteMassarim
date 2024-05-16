@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    margin-top: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+}
+
+.input-cont {
+    margin-bottom: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 30%;
+    width: 100%;
+}
+
+.input-cont label {
+    margin-bottom: 5px;
+}
+
+.input-cont input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #313131;
+    transition: 1s;
+}
+
+.input-cont input:focus {
+    outline: none;
+    border-bottom: 1px solid #313131;
+}
