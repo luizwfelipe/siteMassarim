@@ -8,7 +8,7 @@
 }
 
 #sacola{
-    display: grid;
+    display: none;
     grid-template-columns: 80% 20%;
     position: fixed;
     top: 0;
