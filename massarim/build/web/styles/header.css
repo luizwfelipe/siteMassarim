@@ -8,7 +8,7 @@
 }
 
 #sacola{
-    display: grid;
+    display: none;
     grid-template-columns: 80% 20%;
     position: fixed;
     top: 0;
@@ -47,15 +47,56 @@
     border: none;
     background-color: #BF9B6F;
     color: #f2f2f2;
-    border-radius: 10%;
+    border-radius: 10px;
     width: 40%;
     height: 20%;
+    font-weight: 700;
+    font-size: 120%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .head-bag #titulo{
-    font-size: 170%;
-    color: #616161;
+    font-size: 200%;
+    font-weight: 800;
+    color: #202020;
     font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+}
+
+#sacola .foot-bag{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#sacola .foot-bag #checkout{
+    width: 80%;
+    border: none;
+    border-end-start-radius: 10px;
+    border-end-end-radius: 10px;
+    background-color: #BF9B6F;
+    font-weight: 700;
+    color: #f2f2f2;
+    font-size: 150%;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#sacola .foot-bag #tt{
+    color: #616161;
+    font-size: 120%;
+}
+
+#sacola .foot-bag #tt span{
+    color: #202020;
+    font-weight: 700;
 }
 
 header {

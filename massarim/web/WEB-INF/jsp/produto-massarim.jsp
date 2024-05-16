@@ -20,15 +20,21 @@
                 <div class="imagens">
                     <img src="${produto.imagem}" alt="${produto.nome}">             
                 </div>
-                <div class="info">
-                    <div class="nome-preco">
-                        <h1 class="nome-produto">${produto.nome}</h1>
-                        <h3 class="preco-produto">R$ ${produto.preco}</h3>
+                <div class="info-prod">
+                    <div id="nome-preco">
+                        <h1 id="nome-produto">${produto.nome}</h1>
+                        <h3 id="preco-produto">R$ ${produto.preco}</h3>
                     </div>
                     <div class="addBag">
-                        <input type="number">
+                        
+
                         <button>Adicionar à sacola</button>
+                        <div id="quantd">
+                            <p id="qtd">quantidade:</p>
+                            <input type="number">
+                        </div>
                     </div>
+                    
                     <div class="descricao">
                         <p>${produto.descricao}</p>
                     </div>
