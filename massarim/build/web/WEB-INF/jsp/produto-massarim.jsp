@@ -28,7 +28,7 @@
                     <div class="addBag">
                         
 
-                        <button>Adicionar à sacola</button>
+                        <button id="addSac">Adicionar à sacola</button>
                         <div id="quantd">
                             <p id="qtd">quantidade:</p>
                             <input type="number">
@@ -53,5 +53,6 @@
             </div>-->
             
         </main>
+        <script src="js/carrinho.js"></script>
     </body>
 </html>

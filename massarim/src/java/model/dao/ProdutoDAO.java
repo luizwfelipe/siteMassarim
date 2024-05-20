@@ -158,6 +158,35 @@ public class ProdutoDAO {
         return resultadoBusca;
     }
     
+    public ProdutoDTO buscarProduto(int idP) {
+        ProdutoDTO produto = new ProdutoDTO();
+        
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            ResultSet rs = null;
+            
+            stmt = conexao.prepareStatement("SELECT * FROM produto WHERE  idProduto = ?");
+            stmt.setInt(1, idP);
+            
+            rs = stmt.executeQuery();
+            
+            if(rs.next()) {
+                produto.setIdProduto(rs.getInt("idProduto"));
+                produto.setNome(rs.getString("nome"));
+                produto.setFkIdCategoria(rs.getInt("fkIdCategoria"));
+                produto.setDescricao(rs.getString("descricao"));
+                produto.setPreco(rs.getFloat("preco"));
+                produto.setImagem(rs.getString("imagem"));
+            } else {
+                produto.setIdProduto(0);
+            }
+        } catch(SQLException e ) {
+            e.printStackTrace();
+        }
+        
+        return produto;
+    }
     /*public void delete(int idProduto) {
     try {
         Connection conexao = Conexao.conectar();

@@ -1,0 +1,30 @@
+package model.bean;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+
+public class SacolaDTO {
+private static List<ProdutoDTO> item = new ArrayList();
+    
+    public static void addItem (ProdutoDTO produto){
+        item.add(produto);
+    }
+    public static SacolaDTO CGSacola (HttpServletRequest request){//faz o CREATE/GET do produto na SACOLA
+        SacolaDTO sacola=(SacolaDTO) request.getAttribute("sacola");
+        if(sacola == null){
+            sacola = new SacolaDTO();
+            request.setAttribute("sacola", sacola);
+        }
+        return sacola;
+    }
+    public static void removerItem(int index) {
+        item.remove(index);
+    }
+
+    public static List<ProdutoDTO> getItem() {
+        return item;
+    }
+
+    
+}
