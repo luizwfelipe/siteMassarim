@@ -11,16 +11,16 @@ document.addEventListener("DOMContentLoaded", function() {
         sacola.classList.remove("ativo");
     })
 
-function carregarCarrinho() {
+function carregarCarrinho() { 
     const request = new XMLHttpRequest();
-    request.open("GET", "carrinho", true);
+    request.open("GET", "sacola", true);
     request.onreadystatechange = function() {
         if (request.readyState === 4 && request.status === 200) {
             const data = JSON.parse(request.responseText);
             console.log(data);
-            const carrinho = document.getElementById("produto-main");
+            const sacola = document.getElementById("container-prod");
 
-            carrinho.innerHTML = "";
+            sacola.innerHTML = "";
 
             data.forEach(produto => {
                 const divP = document.createElement("div");
@@ -32,12 +32,12 @@ function carregarCarrinho() {
 
                 const divInfo = document.createElement("div");
                 divInfo.classList.add("container-info");
-                divInfo.innerHTML = '<h3>'+produto.nome+'</h3><h4 class="preco">R$ '+produto.valor.toFixed(2)+'</h4>';
+                divInfo.innerHTML = '<h3>'+produto.nome+'</h3><h4 class="preco">R$ '+produto.preco.toFixed(2)+'</h4>';
 
                 divP.appendChild(divImg);
                 divP.appendChild(divInfo);
 
-                carrinho.appendChild(divP);
+                sacola.appendChild(divP);
             });
 
 
@@ -53,7 +53,7 @@ function adicionarItemAoCarrinho(idProduto) {
 
     const request = new XMLHttpRequest();
 
-    request.open("POST", "carrinho", true);
+    request.open("POST", "sacola", true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     request.onreadystatechange = function() {
         if (request.readyState === 4 && request.status === 200) {
@@ -62,9 +62,9 @@ function adicionarItemAoCarrinho(idProduto) {
     };
     request.send("id=" + idProduto);
 }
-const btns = document.getElementsByClassName("addSac");
-for(let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
+const btn = document.getElementById("addSac");
+if(btn !== null){
+    btn.addEventListener("click", function(){
         const idProduto = this.getAttribute("data-idproduto");
         adicionarItemAoCarrinho(idProduto);
     });

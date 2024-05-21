@@ -26,5 +26,11 @@ private static List<ProdutoDTO> item = new ArrayList();
         return item;
     }
 
-    
+    public static float calcularTotal() {
+        float total = 0;
+        for (ProdutoDTO produto : item) {
+            total += produto.getPreco();
+        }
+        return total;
+    }
 }

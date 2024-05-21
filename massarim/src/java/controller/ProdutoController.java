@@ -58,13 +58,6 @@ public class ProdutoController extends HttpServlet {
             dispatcher.forward(request, response);
         } else if (url.equals("/home")) {
             List<ProdutoDTO> produto = produtosDAO.readProdutos();
-            /*for (int i = 0; i < produto.size(); i++) {
-                    if (produto.get(i).getImagem() != null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
-                        produto.get(i).setImagemBase64(imagemBase64);
-
-                    }
-                }*/
             request.setAttribute("produto", produto);
             String nextPage = "/WEB-INF/jsp/index.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
@@ -75,25 +68,11 @@ public class ProdutoController extends HttpServlet {
             if (busca.equals("")) {
                 String categoria = request.getParameter("cat");
                 List<ProdutoDTO> produto = produtosDAO.buscaCategoria(Integer.parseInt(categoria));
-                /*for (int i = 0; i < produto.size(); i++) {
-                    if (produto.get(i).getImagem() != null) {
-                        String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
-                        produto.get(i).setImagemBase64(imagemBase64);
-
-                    }
-                }*/
                 request.setAttribute("produto", produto);
             } else {
                 busca = "%" + busca + "%";
                 List<ProdutoDTO> produto = produtosDAO.buscaProdutos(busca);
                 request.setAttribute("produto", produto);
-                //for (int i = 0; i < produto.size(); i++) {
-                //    if (produto.get(i).getImagem() != null) {
-                 //       String imagemBase64 = Base64.getEncoder().encodeToString(produto.get(i).getImagem());
-                   //     produto.get(i).setImagemBase64(imagemBase64);
-
-                    //}
-                //}
             }
 
             String nextPage = "/WEB-INF/jsp/produtos.jsp";

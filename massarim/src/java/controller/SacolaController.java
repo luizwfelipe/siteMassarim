@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +22,7 @@ import model.dao.ProdutoDAO;
  *
  * @author Senai
  */
+@MultipartConfig
 @WebServlet(name = "SacolaController", urlPatterns = {"/sacola"})
 public class SacolaController extends HttpServlet {
 
@@ -72,7 +74,7 @@ public class SacolaController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         SacolaDTO sacola = SacolaDTO.CGSacola(request);
-        int idP = Integer.parseInt(request.getParameter("idProduto"));
+        int idP = Integer.parseInt(request.getParameter("id"));
         ProdutoDAO pDao = new ProdutoDAO();
         ProdutoDTO item = pDao.buscarProduto(idP);
         if (item.getIdProduto() > 0) {

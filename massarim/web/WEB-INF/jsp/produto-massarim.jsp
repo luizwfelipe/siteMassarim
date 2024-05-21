@@ -28,7 +28,7 @@
                     <div class="addBag">
                         
 
-                        <button id="addSac">Adicionar à sacola</button>
+                        <button id="addSac" data-idproduto="${produto.idProduto}">COMPRAR</button>
                         <div id="quantd">
                             <p id="qtd">quantidade:</p>
                             <input type="number">
@@ -40,17 +40,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--<div class="card">
-                <div class="imagemProduto">
-                    <img src="data:image/jpeg;base64,${produto.imagemBase64}" alt="${produto.nome}">
-                </div>
-                <div class="card-info">
-                    <h5 class="nome-produto">${produto.nome}</h5>
-                        <p class="cat-produto"> ${produto.fkIdCategoria}</p>
-                    <p class="preco-produto">R$ ${produto.preco}</p>
-                </div>
-            </div>-->
             
         </main>
         <script src="js/carrinho.js"></script>
