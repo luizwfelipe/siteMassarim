@@ -1,4 +1,4 @@
-DROP DATABASE massarim;
+drop database massarim;
 CREATE DATABASE massarim;
 USE massarim;
 
@@ -31,7 +31,9 @@ CREATE TABLE produto(
     descricao TEXT,
     preco FLOAT,
     estoque INT,
-    imagem VARCHAR(255)
+    imagem VARCHAR(255),
+    FOREIGN KEY (fkIdCategoria) REFERENCES categorias(idCategorias),
+    FOREIGN KEY (fkIdTamanho) REFERENCES tamanho(idTamanho)
 );
 
 CREATE TABLE endereco(
