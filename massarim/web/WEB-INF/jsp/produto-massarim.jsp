@@ -9,9 +9,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+        <link rel="manifest" href="assets/site.webmanifest">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="styles/produto-massarim.css">
-        <title>JSP Page</title>
+        <title> * MSSRM</title>
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
@@ -26,13 +30,7 @@
                         <h3 id="preco-produto">R$ ${produto.preco}</h3>
                     </div>
                     <div class="addBag">
-                        
-
-                        <button id="addSac" data-idproduto="${produto.idProduto}">COMPRAR</button>
-                        <div id="quantd">
-                            <p id="qtd">quantidade:</p>
-                            <input type="number">
-                        </div>
+                        <button id="addSac" data-idproduto="${produto.idProduto}" data-estoque="${produto.estoque}">COMPRAR</button>
                     </div>
                     
                     <div class="descricao">
@@ -40,8 +38,6 @@
                     </div>
                 </div>
             </div>
-            
         </main>
-        <script src="js/carrinho.js"></script>
     </body>
 </html>

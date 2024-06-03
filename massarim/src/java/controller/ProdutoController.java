@@ -32,7 +32,7 @@ import model.dao.ProdutoDAO;
  *
  * @author Admin
  */
-@WebServlet(name = "ProdutoController", urlPatterns = {"/produtos", "/cadastrar-produto", "/home", "/cadastrarProduto", "/buscar-produtos","/produto-massarim"})
+@WebServlet(name = "ProdutoController", urlPatterns = {"/produtos", "/cadastrar-produto", "/home", "/cadastrarProduto", "/buscar-produtos","/produto-massarim","/revisao"})
 @MultipartConfig
 public class ProdutoController extends HttpServlet {
 
@@ -88,6 +88,11 @@ public class ProdutoController extends HttpServlet {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
         }
+        else if (url.equals("/revisao")) {
+            String nextPage = "/WEB-INF/jsp/revisao.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -120,7 +125,7 @@ public class ProdutoController extends HttpServlet {
         if (url.equals("/cadastrarProduto")) {
             ProdutoDTO newProduto = new ProdutoDTO();
             newProduto.setNome(request.getParameter("nome"));
-
+            newProduto.setEstoque(Integer.parseInt(request.getParameter("estoque")));
             newProduto.setDescricao(request.getParameter("descricao"));
             newProduto.setFkIdCategoria(Integer.parseInt(request.getParameter("fkIdCategoria")));
             newProduto.setPreco(Float.parseFloat(request.getParameter("preco")));
@@ -145,7 +150,7 @@ public class ProdutoController extends HttpServlet {
         }
     ProdutoDAO produtosD = new ProdutoDAO();
     produtosD.create(newProduto);
-    response.sendRedirect("./home");
+    response.sendRedirect("./cadastrar-produto");
         }
     }
 

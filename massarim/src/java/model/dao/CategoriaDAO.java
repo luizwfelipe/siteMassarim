@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.bean.CategoriaDTO;
+import model.bean.ProdutoDTO;
 
 /**
  *
@@ -42,5 +43,21 @@ public class CategoriaDAO {
         }
         
         return categorias;
+    }
+    public void create(CategoriaDTO c) {
+        try {
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            
+            stmt = conexao.prepareStatement("INSERT INTO categorias (nome) VALUES (?)");
+            
+            stmt.setString(1, c.getNome());
+            
+            stmt.executeUpdate();
+            stmt.close();
+            conexao.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

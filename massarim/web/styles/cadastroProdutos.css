@@ -1,16 +1,39 @@
-*{
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto','Work Sans',sans-serif,'Segoe UI', Tahoma, Geneva, Verdana;
+    font-weight: 500;
 }
 
 main{
     margin-top: 10vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
 }
 
+#page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divisao{
+    background-color: #a7a7a7;
+    height: 80vh;
+    width: 0.1vw;
+}
+
+.container{
+    width: 50%;
+}
+
+.containerCategoriaTamanho{
+    width: 50%;
+}
 .input-cont {
     margin-bottom: 3%;
     display: flex;
