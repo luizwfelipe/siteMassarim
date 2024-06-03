@@ -75,13 +75,20 @@
     align-items: center;
     padding-inline: 5%;
 }
-#sacola #container-bag #container-prod .container-info h3,
-#sacola #container-bag #container-prod .container-info h4{
+#sacola #container-bag #container-prod .container-info h3{
     font-size: 1vw;
     color: #202020;
     width: 30%;
+    font-weight: 700;
+}
+
+#sacola #container-bag #container-prod .container-info h4{
+    font-size: 0.7vw;
+    color: #616161;
+    width: 30%;
     font-weight: 600;
 }
+
 
 #sacola #container-bag #container-prod .container-info input{
     width: 30%;

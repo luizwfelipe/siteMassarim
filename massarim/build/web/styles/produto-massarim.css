@@ -26,8 +26,8 @@ main{
 
 .imagens {
     margin-inline: 5vw;
-    width: 100%; 
-    height: 100%; 
+    width: 80%; 
+    height: 80%; 
     max-width: 50vw;
     max-height: 60vh; 
 }
@@ -66,7 +66,7 @@ main{
 }
 
 .info-prod #preco-produto{
-    font-size: 2vw;
+    font-size: 1.5vw;
 }
 
 .info-prod .addBag{
@@ -77,14 +77,43 @@ main{
 }
 
 .info-prod .descricao p{
-    color: #616161;
-    font-size: 1.5vw;
+    color: #202020;
+    font-size: 0.8vw;
     margin-top: 2vh;
 }
 
 .info-prod .addBag input:focus{
     outline: none;
 }
+
+.tamanho{
+    width: 100%;
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    padding-left: 0;
+    align-items: start;
+}
+.tamanho h4{
+    margin-left: 0;
+    color: #202020;
+    font-size: 1.2vw;
+    font-weight: 600;
+    justify-content: start;
+}
+
+.tamanho h5{
+    font-size: 1.1vw;
+    margin-left: 0;
+    color: #a7a7a7;
+    font-weight: 500;
+}
+.tamanho h5 span{
+    color: #202020;
+    font-weight: 600;
+}
+
 
 .info-prod .addBag button{
     margin-top: 2vh;

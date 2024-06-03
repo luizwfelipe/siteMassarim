@@ -33,6 +33,11 @@
                         <button id="addSac" data-idproduto="${produto.idProduto}" data-estoque="${produto.estoque}">COMPRAR</button>
                     </div>
                     
+                    <div class="tamanho">
+                        <h4>selecione um tamanho</h4>
+                        <h5>p g <span>GG</span></h5>
+                    </div>
+
                     <div class="descricao">
                         <p>${produto.descricao}</p>
                     </div>

@@ -68,7 +68,14 @@
                     </div>
                         
                 </div>
-                <div id="parteTamanho"></div>
+                <hr>
+                <div id="parteTamanho">
+                    <form action="cadastrarTamanho" method="POST" enctype="multipart/form-data">                        
+                        <label for="nome-categoria">Tamanho:</label>
+                        <input type="text" class="txt" id="nome-categoria" name="nome-categoria" required>    
+                        <button type="submit" class="btnTamanho">Cadastrar</button>
+                    </form>
+                </div>
             </div>
         </div>
         
