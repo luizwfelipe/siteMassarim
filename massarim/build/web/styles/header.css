@@ -162,6 +162,7 @@
     cursor: pointer;
 }
 
+
 .head-bag #titulo {
     text-align: center;
     justify-content: center;
@@ -250,7 +251,7 @@ header {
     background-color: #202020;
     align-items: center;
     justify-content: space-around;
-    padding: 1%;
+    padding: 10px;
     box-shadow: 0 2vw 11vh #ffffff;
     z-index: 15;
 }

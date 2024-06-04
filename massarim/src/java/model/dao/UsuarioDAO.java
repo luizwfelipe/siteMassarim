@@ -21,8 +21,8 @@ import model.bean.UsuarioDTO;
  * @author Senai
  */
 public class UsuarioDAO {
-     public List<UsuarioDTO> readUsuarios() {
-        List<UsuarioDTO> listaUsuarios = new ArrayList<>();
+     public UsuarioDTO readUsuarios(int id) {
+        UsuarioDTO usuario = new UsuarioDTO();
         Connection conexao = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -31,8 +31,7 @@ public class UsuarioDAO {
             conexao = Conexao.conectar();
             stmt = conexao.prepareStatement("SELECT idUsuario, nome, senha, email, cpf, telefone, dataNascimento, admin FROM usuario");
             rs = stmt.executeQuery();
-            while (rs.next()) {
-                UsuarioDTO usuario = new UsuarioDTO();
+            if (rs.next()) {
                 usuario.setIdUsuario(rs.getInt("idUsuario"));
                 usuario.setNome(rs.getString("nome"));
                 usuario.setSenha(rs.getString("senha"));
@@ -41,7 +40,6 @@ public class UsuarioDAO {
                 usuario.setTelefone(rs.getString("telefone"));
                 usuario.setDataNascimento(rs.getDate("dataNascimento"));
                 usuario.setAdmin(rs.getInt("admin"));
-                listaUsuarios.add(usuario);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -54,7 +52,7 @@ public class UsuarioDAO {
                 ex.printStackTrace();
             }
         }
-        return listaUsuarios;
+        return usuario;
     }
     
     public void cadastrarUsuario(UsuarioDTO user) {

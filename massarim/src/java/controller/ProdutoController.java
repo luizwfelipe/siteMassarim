@@ -19,6 +19,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,7 @@ import model.dao.ProdutoDAO;
  *
  * @author Admin
  */
-@WebServlet(name = "ProdutoController", urlPatterns = {"/produtos", "/cadastrar-produto", "/home", "/cadastrarProduto", "/buscar-produtos","/produto-massarim","/revisao"})
+@WebServlet(name = "ProdutoController", urlPatterns = {"/produtos", "/cadastrar-produto", "/home", "/cadastrarProduto", "/buscar-produtos", "/produto-massarim", "/revisao"})
 @MultipartConfig
 public class ProdutoController extends HttpServlet {
 
@@ -78,21 +79,34 @@ public class ProdutoController extends HttpServlet {
             String nextPage = "/WEB-INF/jsp/produtos.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        }else if (url.equals("/produto-massarim")){
+        } else if (url.equals("/produto-massarim")) {
             String nextPage = "/WEB-INF/jsp/produto-massarim.jsp";
             int idProduto = Integer.parseInt(request.getParameter("focado"));
             ProdutoDAO proDAO = new ProdutoDAO();
             ProdutoDTO produto = proDAO.focarProduto(idProduto);
 
-                            request.setAttribute("produto", produto);
+            request.setAttribute("produto", produto);
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
+        } else if (url.equals("/revisao")) {
+            Cookie[] cookies = request.getCookies();
+            boolean passa = false;
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("logar") && !(cookie.getName().equals(""))) {
+                    passa = true;
+                }
+            }
+            if (passa) {
+                String nextPage = "/WEB-INF/jsp/revisao.jsp";
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                dispatcher.forward(request, response);
+            } else {
+                String nextPage = "/WEB-INF/jsp/login.jsp";
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+                dispatcher.forward(request, response);
+            }
+
         }
-        else if (url.equals("/revisao")) {
-            String nextPage = "/WEB-INF/jsp/revisao.jsp";
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
-            dispatcher.forward(request, response);
-        } 
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -130,27 +144,27 @@ public class ProdutoController extends HttpServlet {
             newProduto.setFkIdCategoria(Integer.parseInt(request.getParameter("fkIdCategoria")));
             newProduto.setPreco(Float.parseFloat(request.getParameter("preco")));
             Part filePart = request.getPart("imagem");
-    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        if (fileName != null && !fileName.isEmpty()) {
-            String basePath = getServletContext().getRealPath("/") + "assets";
-            File uploads = new File(basePath);
-            if (!uploads.exists()) {
-                uploads.mkdirs();
-            }
-            File file = new File(uploads, fileName);
+            String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            if (fileName != null && !fileName.isEmpty()) {
+                String basePath = getServletContext().getRealPath("/") + "assets";
+                File uploads = new File(basePath);
+                if (!uploads.exists()) {
+                    uploads.mkdirs();
+                }
+                File file = new File(uploads, fileName);
 
-            try (InputStream input = filePart.getInputStream()) {
-                Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            } catch (Exception e) {
-                e.printStackTrace();
+                try (InputStream input = filePart.getInputStream()) {
+                    Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                newProduto.setImagem("assets/" + fileName);
+            } else {
+                newProduto.setImagem(null);
             }
-            newProduto.setImagem("assets/" + fileName);
-        } else {
-            newProduto.setImagem(null);
-        }
-    ProdutoDAO produtosD = new ProdutoDAO();
-    produtosD.create(newProduto);
-    response.sendRedirect("./cadastrar-produto");
+            ProdutoDAO produtosD = new ProdutoDAO();
+            produtosD.create(newProduto);
+            response.sendRedirect("./cadastrar-produto");
         }
     }
 
