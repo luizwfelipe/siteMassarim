@@ -10,16 +10,74 @@
 }
 
 footer{
-    background-color: #202020;
+    margin-top: 1vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    height: 5vh;
-    width: 100%;
+    align-items: center;
 }
 
-footer h3{
-    color: #d6d6d6;
-    font-weight: 600;
-    font-size: larger;
+#cima{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#cima #paginas{
+    display: flex;
+    padding-inline: 1vw;
+    justify-content: center;
+    align-items: center;
+}
+
+#cima #paginas a{
+    color: #202020;
+    font-weight: 500;
+    font-size: 0.6vw;
+    font-family:  'Lexend Deca','Josefin Sans',  sans-serif, Arial, Helvetica;
+    text-decoration: none;
+    padding: 0.5vw;
+}
+
+#cima #redes-sociais{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5vh;
+    margin-bottom: 1vh;
+}
+
+#cima #redes-sociais a{
+    font-weight: 900;
+    font-size: 1vw;
+    padding: 0.5vw;
+}
+#cima #redes-sociais a:hover{
+    color: #000000;
+}
+
+#cima #paginas a:hover{
+    color: #000;
+}
+
+#baixo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #616161;
+    font-size: 0.6vw;
+    width: 80%;
+}
+
+
+#criado{
+    color: #616161;
+}
+
+#criado span{
+    color: 202020s;
+}
+
+#mass span{
+    font-size: 0.6vw;
 }

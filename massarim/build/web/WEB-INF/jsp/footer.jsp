@@ -14,11 +14,27 @@
         <link rel="manifest" href="assets/site.webmanifest">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="styles/footer.css">
+        <script src="https://kit.fontawesome.com/72aebe393c.js" crossorigin="anonymous"></script>
         <title>JSP Page</title>
     </head>
     <body>
         <footer>
-            <h3>Direitos de MASSARIM</h3>
+            <div id="cima">
+                <div id="paginas">
+                    <a href="#">SOBRE</a>
+                    <a href="#">TERMOS</a>
+                </div>
+                <div id="redes-sociais">
+                    <a href="https://www.instagram.com/massarimmodas/"><i class="fa-brands fa-square-instagram" style="color: #202020;"></i></a>
+                    <a href="https://www.facebook.com/people/Neusa-Massarim/pfbid02UQV6eP9Z7SpXVqyWfYBYzfZwMhmUXmGxyuvuGcXgvYQmV76Ds33pjTG6dc4uFzKdl/"><i class="fa-brands fa-square-facebook" style="color: #202020;"></i></a>
+                </div>
+            </div>
+            <div id="baixo">
+                <h4>massarim <span>&copy;</span></h4>
+                <h4 id="criado">created by <span>@luizwfelipe</span></h4>
+            </div>
+
+
         </footer>
     </body>
 </html>
