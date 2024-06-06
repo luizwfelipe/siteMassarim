@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div id="baixo">
-                <h4>massarim <span>&copy;</span></h4>
+                <h4 id="mass">massarim <span>&copy;</span></h4>
                 <h4 id="criado">created by <span>@luizwfelipe</span></h4>
             </div>
 
