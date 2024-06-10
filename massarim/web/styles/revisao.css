@@ -9,10 +9,39 @@
     font-weight: 500;
 }
 
+header{
+    background-color: #f2f2f2;
+    height: 20vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0.3vw 10px #cfcfcf;
+}
+header img{
+    width: 20vw;
+}
+header h2{
+    font-size: 2vw;
+    color: #202020;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+    font-weight: 800;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+main{
+    margin-top: 4vh;
+}
+
 #revisao-sacola{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     padding: 1vw;
 }
 
@@ -60,6 +89,125 @@
     margin-top: 10%;
 }
 
+.parteCima h3{
+    color: #202020;
+    font-weight: 700;
+    font-size: 1.5vw;
+}
+
 .parteBaixo #preco{
     margin-right: 30%;
+    color: #616161;
+    font-weight: 600;
+    font-size: 1.1vw;
+}
+
+.parteBaixo p{
+    color: #202020;
+    font-weight: 600;
+    font-size: 1.1vw;
+}
+
+.confirmar-revisao{
+    background-color: #f2f2f2;
+    height: 27vh;
+    width: 25vw;
+    padding: 0.5vw;
+    border-radius: 10px;
+    box-shadow: 0px 2px 2px #cfcfcf;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
+
+.confirmar-revisao .info-confirmar{
+    font-size: 1vw;
+    color: #616161;
+}
+
+.confirmar-revisao .info-confirmar #resumo-pedido{
+    display: flex;
+    justify-content: start;
+    font-size: 1.1vw;
+}
+
+.confirmar-revisao .info-confirmar #tt-revisao{
+    display: flex;
+    justify-content: space-between;
+}
+
+.confirmar-revisao .info-confirmar #frete-revisao{
+    display: flex;
+    justify-content: space-between;    
+}
+
+.confirmar-revisao .info-confirmar #total-pedido{
+    display: flex;
+    justify-content: space-between;
+}
+
+#confirmarCompra{
+    width: 100%;
+    background-color: #BF9B6F;
+    padding: 0.2vw;
+    color: #f2f2f2;
+    font-weight: 700;
+    font-size: 1.2vw;
+    border: none;
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px;
+    cursor: pointer;
+}
+.confirmar-revisao a{
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.2vh;
+    text-decoration: none;
+    color: #616161;
+}
+
+.confirmar-revisao a:hover{
+    color: #202020;
+    font-weight: 700;
+}
+
+.confirmar-revisao hr{
+    width: 100%;
+}
+
+#cep {
+    align-items: flex-start;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    padding-inline: 9vw;
+}
+#cep label{
+    font-size: 1vw;
+    font-weight: 700;
+    color: #202020;
+}
+
+#cep #input-cep input{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #313131;
+    transition: 1s;
+}
+
+#cep #input-cep input:focus {
+    outline: none;
+    border-bottom: 1px solid #000000;
+}
+
+#cep #input-cep #calcularFrete{
+    background-color: #979797;
+    padding: 0.2vw;
+    color: #f2f2f2;
+    font-weight: 500;
+    font-size: 0.7vw;
+    border: none;
+    cursor: not-allowed;
 }

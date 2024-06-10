@@ -3,8 +3,8 @@
     Created on : 30/04/2024, 14:27:50
     Author     : Senai
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
     <head>

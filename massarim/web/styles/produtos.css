@@ -15,7 +15,7 @@ main{
     margin-top: 15vh;
 }
 
-.containerProduto {
+.containerProduto{
 
     display: flex;
     flex-wrap: wrap; 
@@ -23,7 +23,7 @@ main{
     align-items:center;
 }
 
-.cartao {
+.cartao{
     width: calc(30%);
     height: 30vw;
     margin: 1vw;
@@ -37,7 +37,7 @@ main{
     position: relative;
 }
 
-.cartao .imagemProduto {
+.cartao .imagemProduto{
     width: 100%; 
     height: auto;
     max-width: 30vw;
@@ -46,14 +46,14 @@ main{
     transition: filter 0.3s ease;
 }
 
-.imagemProduto img {
+.imagemProduto img{
     width: 100%;
     height: 100%;
     object-fit: cover; 
     transition: filter 0.3s ease;
 }
 
-.cartao-info {
+.cartao-info{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -62,7 +62,7 @@ main{
     transition: opacity 0.3s ease;
 }
 
-.cartao-info h5 {
+.cartao-info h5{
     font-size: 120%;
     color: #616161;
     font-weight: 600;
@@ -70,7 +70,7 @@ main{
     text-decoration: none;
 }
 
-.cartao-info .preco-produto {
+.cartao-info .preco-produto{
     font-size: 110%;
     color: #616161;
     font-weight: 600;
@@ -78,19 +78,19 @@ main{
     text-decoration: none;
 }
 
-section img {
+section img{
     width: 100%;
     height: 100%;
 }
 
-.cartao a {
+.cartao a{
     text-decoration: none;
 }
 
-.cartao:hover .imagemProduto img {
+.cartao:hover .imagemProduto img{
     filter: grayscale(0.2);
 }
 
-.cartao:hover .cartao-info {
+.cartao:hover .cartao-info{
     opacity: 1;
 }

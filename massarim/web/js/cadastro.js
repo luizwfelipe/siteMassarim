@@ -1,8 +1,7 @@
 const inputCpf = document.querySelector('#cpf');
 const inputTelefone = document.querySelector('#telefone');
 const inputDataNascimento = document.querySelector('#dataNascimento');
-
-function cpf(valor) {
+function cpf(valor){
     valor = valor.replace(/\D/g, ''); 
     if (valor.length > 3) {
         valor = valor.substring(0, 3) + '.' + valor.substring(3);
@@ -16,7 +15,7 @@ function cpf(valor) {
     
     return valor;
 }
-function telefone(valor) {
+function telefone(valor){
     valor = valor.replace(/\D/g, '');
     if (valor.length > 0) {
         if (valor.length === 11 && valor[2] === '9') {
@@ -30,14 +29,14 @@ function telefone(valor) {
 }
 
 
-inputCpf.addEventListener('input', () => {
+inputCpf.addEventListener('input',()=>{
     let valorAtual = inputCpf.value;
     let cpfok = cpf(valorAtual);
 
     inputCpf.value = cpfok;
 });
 
-inputTelefone.addEventListener('input', () => {
+inputTelefone.addEventListener('input',()=>{
     let valorAtual = inputTelefone.value;
     let telefoneok = telefone(valorAtual);
 
@@ -50,11 +49,11 @@ const datamin = dataMinima.toISOString().slice(0, 10);
 
 inputDataNascimento.setAttribute('max', datamin);
 
-inputDataNascimento.addEventListener('input', () => {
+inputDataNascimento.addEventListener('input', () =>{
     const dataNascimento = new Date(inputDataNascimento.value);
     const dataLimite = new Date();
     dataLimite.setFullYear(dataLimite.getFullYear() - 18);
-    if (dataNascimento > dataLimite) {
+    if(dataNascimento > dataLimite){
         alert('Você precisa ter 18 anos para se cadastrar em nosso site.');
         inputDataNascimento.value = '';
     }

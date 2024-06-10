@@ -4,7 +4,8 @@
     Author     : Admin
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="styles/footer.css">
         <script src="https://kit.fontawesome.com/72aebe393c.js" crossorigin="anonymous"></script>
-        <title>JSP Page</title>
+        <title>footer</title>
     </head>
     <body>
         <footer>
