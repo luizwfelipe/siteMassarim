@@ -6,7 +6,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="styles/revisao.css">
-        <title>Revisão do Carrinho</title>
+        <title>revisão * MSSRM</title>
     </head>
     <body>
         <header>
@@ -22,12 +22,11 @@
                 <div class="confirmar-revisao">
                     <h3 class="info-confirmar" id="resumo-pedido">resumo do pedido</h3>
                     <p class="info-confirmar" id="tt-revisao">produtos: <span>R$ 0,0</span></p>
-
-                    <h3 class="info-confirmar" id="frete-revisao">frete: <span></span></h3>
+                    <h3 class="info-confirmar" id="frete-revisao">frete: <span>grátis</span></h3>
 
                     <hr>
                     <h3 class="info-confirmar" id="total-pedido">total do pedido: <span></span></h3>
-                    <button id="confirmarCompra">continuar checkout</button>
+                    <a href="./endereco"><button id="confirmarCompra">continuar checkout</button></a>
                     <a href="./home">adicionar mais produtos</a>
                 </div>
             </div>
