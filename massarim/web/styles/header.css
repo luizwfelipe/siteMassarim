@@ -4,8 +4,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto','Work Sans',sans-serif,'Segoe UI', Tahoma, Geneva, Verdana;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
 
@@ -295,12 +296,12 @@ header {
 .down .logo{
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     width: 100%;
 }
 
 .logo img{
-    width: 20vw;
+    width: 50%;
 }
 
 .down .categorias{
@@ -314,7 +315,7 @@ header {
     color: #202020;
     font-weight: 500;
     margin-inline: 1vw;
-    font-family: 'Libre Bodoni', 'Bodoni Moda', 'Buenard', serif, Tahoma, Geneva, Verdana;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
     font-size: 120%;
 }
 

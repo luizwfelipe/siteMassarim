@@ -21,7 +21,7 @@
     <body>
         <header class="header">
                 <div class="up">
-                    <p>ENVIO PARA TODO O BRASIL &#x1F69A;</p>
+                    <p>ENVIO PARA TODO O BRASIL</p>
                     <div class="user-bag">
                         <div class="user"><a href="./login"><i class="fa-regular fa-user" style="color: #dfdfdf;"></i></a></div>
                         <div id="bag"><i class="fa-solid fa-bag-shopping" id="bagOpen" style="color: #dfdfdf;"></i></div>

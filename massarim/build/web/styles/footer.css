@@ -5,8 +5,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Roboto','Work Sans',sans-serif,'Segoe UI', Tahoma, Geneva, Verdana;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
     font-weight: 500;
+    text-transform: uppercase;
 }
 
 footer{
@@ -34,7 +35,7 @@ footer{
     color: #202020;
     font-weight: 500;
     font-size: 0.6vw;
-    font-family:  'Lexend Deca','Josefin Sans',  sans-serif, Arial, Helvetica;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
     text-decoration: none;
     padding: 0.5vw;
 }
