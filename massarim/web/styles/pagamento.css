@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto','Work Sans',sans-serif,'Segoe UI', Tahoma, Geneva, Verdana;
+    font-weight: 500;
+}
+
+header{
+    height: 10vh;
+    margin-bottom: 5vh;
+    background-color: #f2f2f2;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+}
+
+#container{
+    border-radius: 20px;
+    width: 80vw;
+    height: 70vh;
+    background-color: #f2f2f2;
+    display: flex;
+    box-shadow: 0px 2px 2px #cfcfcf;
+}
+
+#container #tipo-pagamento{
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tipo{
+    height: 100%;
+    width: 100%;
+    color: #616161;
+    font-size: 1.2vw;
+    margin: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.tipo:hover{
+    font-size: 1.5vw;
+}
+
+.tipo:focus{
+    font-size: 1.5vw;
+    color: #202020;
+}
+
+
+#pix{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#parteCima-pix{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 80%;
+    margin-bottom: 10%;
+}
+
+#pagar-qr{
+    width: 20%;
+}
+
+#pagar-qr img{
+    width: 70%;
+    border-start-start-radius: 10px;
+}
+
+#pagar-pix-code{
+    width: 100%;
+}
+
+#code-pix{
+    color: #202020;
+    background-color: #fff;
+    padding: 2%;
+    font-size: 0.8vw;
+    border-start-end-radius: 10px;
+    box-shadow: 0px 2px 2px #cfcfcf;
+}
+
+#btn-copiar-pix{
+    margin-top: 2%;
+    width: 100%;
+    background-color: #BF9B6F;
+    padding: 0.2vw;
+    color: #f2f2f2;
+    font-weight: 700;
+    font-size: 0.9vw;
+    border: none;
+    cursor: pointer;
+}
+
+#parteBaixo-pix{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+    width: 80%;
+    margin-bottom: 10%;
+}
+
+#intrucoes-pix{
+    background-color: #D9D9D9;
+    padding: 5%;
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px;
+}
+
+#instrucoes-pix h3{
+    font-size: 1.3vw;
+    font-weight: 700;
+}
+
+
+
+#credito{
+    display: none;
+}
+
+#debito{
+    display: none;
+
+}
+
+#boleto{
+    display: none;
+
+}

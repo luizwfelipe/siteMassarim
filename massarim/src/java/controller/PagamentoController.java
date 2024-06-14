@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Admin
  */
-@WebServlet(name = "endereco", urlPatterns = {"/endereco"})
-public class endereco extends HttpServlet {
+@WebServlet(name = "PagamentoController", urlPatterns = {"/pagamento"})
+public class PagamentoController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +32,9 @@ public class endereco extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
-        if (url.equals("/endereco")) {
-            String nextPage = "/WEB-INF/jsp/endereco.jsp";
+        if (url.equals("/pagamento")) {
+            String nextPage = "/WEB-INF/jsp/pagamento.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
         }
