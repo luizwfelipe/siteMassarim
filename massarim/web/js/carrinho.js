@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 });
 
-                btnIncrementar.addEventListener('click', function() {
+                btnIncrementar.addEventListener('click', function(){
                     const currentQuantity = parseInt(inputQuantidade.value);
                     if (currentQuantity < produto.estoque) {
                         inputQuantidade.value = currentQuantity + 1;
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 });
 
-                btnDelete.addEventListener('click', function() {
+                btnDelete.addEventListener('click', function(){
                     removeFromCart(index);
                 });
             });
@@ -100,13 +100,13 @@ document.addEventListener("DOMContentLoaded", function() {
     function adicionarItemAoCarrinho(product) {
         const existingProduct = cart.find(item => item.nome === product.nome);
 
-        if(existingProduct) {
+        if(existingProduct){
             const availableQuantity = product.estoque - existingProduct.quantidade;
             if(availableQuantity > 0) {
                 const quantityToAdd = Math.min(product.quantidade, availableQuantity);
                 existingProduct.quantidade += quantityToAdd;
             }
-        } else {
+        } else{
             cart.push(product);
         }
 
@@ -131,12 +131,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const btnAddSac = document.getElementById("addSac");
     if(btnAddSac !== null){
-        btnAddSac.addEventListener("click", function() {
-            const button = this;
+        btnAddSac.addEventListener("click", function(){
+            const button =this;
             const product ={
                 image: document.querySelector('.imagens img').src,
                 nome: document.getElementById('nome-produto').textContent,
-                preco: parseFloat(document.getElementById('preco-produto').textContent.replace('R$', '').trim()),
+                preco: parseFloat(document.getElementById('preco-produto').textContent.replace('R$','').trim()),
                 quantidade: 1,
                 estoque: parseInt(button.getAttribute('data-estoque'))
             };

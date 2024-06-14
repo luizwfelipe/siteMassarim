@@ -37,14 +37,14 @@ public class EnderecoController extends HttpServlet {
     
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
         String url = request.getServletPath();
-        if (url.equals("/endereco") || url.equals("/meusEnderecos")) {
+        if (url.equals("/endereco") || url.equals("/meusEnderecos")){
             int idDoUsuario = 0;
             Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
+            if (cookies != null){
                 for (Cookie cookie : cookies) {
-                    if (cookie.getName().equals("logar")) {
+                    if (cookie.getName().equals("logar")){
                         idDoUsuario = Integer.parseInt(cookie.getValue());
                         break;
                     }

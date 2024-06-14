@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Admin
  */
 @WebServlet(name = "PagamentoController", urlPatterns = {"/pagamento"})
-public class PagamentoController extends HttpServlet {
+public class PagamentoController extends HttpServlet{
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,9 +31,9 @@ public class PagamentoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
         String url = request.getServletPath();
-        if (url.equals("/pagamento")) {
+        if (url.equals("/pagamento")){
             String nextPage = "/WEB-INF/jsp/pagamento.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);

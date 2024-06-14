@@ -47,24 +47,24 @@ public class ProdutoController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException{
         ProdutoDAO produtosDAO = new ProdutoDAO();
         CategoriaDAO categoriasDAO = new CategoriaDAO();
         List<CategoriaDTO> categorias = categoriasDAO.read();
         request.setAttribute("categorias", categorias);
         String url = request.getServletPath();
-        if (url.equals("/cadastrar-produto")) {
+        if (url.equals("/cadastrar-produto")){
             String nextPage = "/WEB-INF/jsp/cadastroProdutos.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        } else if (url.equals("/home")) {
+        } else if (url.equals("/home")){
             List<ProdutoDTO> produto = produtosDAO.readProdutos();
             request.setAttribute("produto", produto);
             String nextPage = "/WEB-INF/jsp/index.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
 
-        } else if (url.equals("/buscar-produtos")) {
+        } else if (url.equals("/buscar-produtos")){
             String busca = request.getParameter("busca") != null ? request.getParameter("busca") : "";
             if (busca.equals("")) {
                 String categoria = request.getParameter("cat");
