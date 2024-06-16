@@ -26,7 +26,7 @@
         </section>
             <div class="containerProduto">
                 <c:forEach var="produtos" items="${produto}">
-
+                
                 <div class="cartao">
                     <a href="./produto-massarim?focado=${produtos.idProduto}">
                     <div class="imagemProduto">

@@ -95,10 +95,10 @@ public class ProdutoDAO {
         return prod;
     }
     
-    public List<ProdutoDTO> buscaProdutos(String busca) {
+    public List<ProdutoDTO> buscaProdutos(String busca){
         List<ProdutoDTO> resultadoBusca = new ArrayList();
 
-        try {
+        try{
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
@@ -121,7 +121,7 @@ public class ProdutoDAO {
                 
                 resultadoBusca.add(prod);
             }
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return resultadoBusca;
@@ -130,7 +130,7 @@ public class ProdutoDAO {
     public List<ProdutoDTO> buscaCategoria (int categoria) {
         List<ProdutoDTO> resultadoBusca = new ArrayList();
 
-        try {
+        try{
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
@@ -140,7 +140,7 @@ public class ProdutoDAO {
             
             rs = stmt.executeQuery();
             
-            while(rs.next()) {
+            while(rs.next()){
                 ProdutoDTO prod = new ProdutoDTO();
                 prod.setIdProduto(rs.getInt("idProduto"));
                 prod.setNome(rs.getString("nome"));
@@ -152,16 +152,16 @@ public class ProdutoDAO {
                 
                 resultadoBusca.add(prod);
             }
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return resultadoBusca;
     }
     
-    public ProdutoDTO buscarProduto(int idP) {
+    public ProdutoDTO buscarProduto(int idP){
         ProdutoDTO produto = new ProdutoDTO();
         
-        try {
+        try{
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             ResultSet rs = null;
@@ -181,13 +181,27 @@ public class ProdutoDAO {
             } else {
                 produto.setIdProduto(0);
             }
-        } catch(SQLException e ) {
+        }catch(SQLException e ) {
             e.printStackTrace();
         }
         
         return produto;
     }
-    
+     public void diminuirEstoque(int produtoId, int quantidade){
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+
+            stmt = conexao.prepareStatement("UPDATE produto SET estoque = estoque - ? WHERE idProduto = ?");
+            stmt.setInt(1, quantidade);
+            stmt.setInt(2, produtoId);
+            stmt.executeUpdate();
+            stmt.close();
+            conexao.close();
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
   
 }
 

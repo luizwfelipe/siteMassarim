@@ -26,23 +26,25 @@
                                     <div class="endereco-unico">
                                         <div id="endereco-esquerda">
                                             
-                                            <h3 id="endereco-cep">${endereco.cep}</h3>
-                                            <h3 id="endereco-rua">${endereco.rua}</h3>
-                                            <h3 id="endereco-numero">${endereco.numero}</h3>
-                                            <h3 id="endereco-complemento">${endereco.complemento}</h3>
+                                            <h3 id="endereco-cep">cep: <span>${endereco.cep}</span></h3>
+                                            <h3 id="endereco-rua">rua: <span>${endereco.rua}</span></h3>
+                                            <h3 id="endereco-numero">numero: <span>${endereco.numero}</span></h3>
+                                            <h3 id="endereco-complemento">complemento: <span>${endereco.complemento}</span></h3>
                                         </div>
                                         <div id="endereco-direita">
-                                            <h3 id="endereco-referencia">${endereco.referencia}</h3>
-                                            <h3 id="endereco-bairro">${endereco.bairro}</h3>
-                                            <h3 id="endereco-cidade">${endereco.cidade}</h3>
-                                            <h3 id="endereco-estado">${endereco.estado}</h3>
+                                            <h3 id="endereco-referencia">referência: <span>${endereco.referencia}</span></h3>
+                                            <h3 id="endereco-bairro">bairro: <span>${endereco.bairro}</span></h3>
+                                            <h3 id="endereco-cidade">cidade: <span>${endereco.cidade}</span></h3>
+                                            <h3 id="endereco-estado">estado: <span>${endereco.estado}</span></h3>
                                             
                                         </div>   
                                         <div id="escolha-endereco">
-                                            <button>escolher</button>
+                                            <form action="escolherEndereco" method="post">
+                                                <input type="hidden" name="rua" value="${endereco.rua}">
+                                                <input type="hidden" name="numero" value="${endereco.numero}">
+                                                <button type="submit">escolher</button>
+                                            </form>
                                         </div>
-                                        
-                                        
                                     </div>
                                 </c:forEach>
                             </div>
@@ -50,7 +52,6 @@
                     </div>
 
                 </div>
-                <div id="hrline"><hr></div>
                 <div id="baixo">
 
                     <div id="formulario">

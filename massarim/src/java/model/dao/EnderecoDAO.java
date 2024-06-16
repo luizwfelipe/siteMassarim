@@ -19,7 +19,7 @@ import model.bean.EnderecoDTO;
  * @author Admin
  */
 public class EnderecoDAO{
-    public List<EnderecoDTO> readEndereco() {
+    public List<EnderecoDTO> readEndereco(){
         List<EnderecoDTO> listaEndereco = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement stmt = null;

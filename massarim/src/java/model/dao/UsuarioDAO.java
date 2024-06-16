@@ -11,8 +11,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import model.bean.UsuarioDTO;
 
@@ -21,13 +19,13 @@ import model.bean.UsuarioDTO;
  * @author Senai
  */
 public class UsuarioDAO {
-     public UsuarioDTO readUsuarios(int id) {
+     public UsuarioDTO readUsuarios(int id){
         UsuarioDTO usuario = new UsuarioDTO();
         Connection conexao = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        try {
+        try{
             conexao = Conexao.conectar();
             stmt = conexao.prepareStatement("SELECT idUsuario, nome, senha, email, cpf, telefone, dataNascimento, admin FROM usuario");
             rs = stmt.executeQuery();
@@ -41,9 +39,9 @@ public class UsuarioDAO {
                 usuario.setDataNascimento(rs.getDate("dataNascimento"));
                 usuario.setAdmin(rs.getInt("admin"));
             }
-        } catch (SQLException ex) {
+        }catch(SQLException ex) {
             ex.printStackTrace();
-        } finally {
+        }finally {
             try {
                 if (rs != null) rs.close();
                 if (stmt != null) stmt.close();
@@ -55,8 +53,8 @@ public class UsuarioDAO {
         return usuario;
     }
     
-    public void cadastrarUsuario(UsuarioDTO user) {
-        try {
+    public void cadastrarUsuario(UsuarioDTO user){
+        try{
             Connection conexao = Conexao.conectar();
             PreparedStatement stmt = null;
             
@@ -74,7 +72,7 @@ public class UsuarioDAO {
             stmt.close();
             conexao.close();
             
-        } catch (SQLException e) {
+        }catch (SQLException e) {
             e.printStackTrace();
         }
     }

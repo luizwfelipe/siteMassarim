@@ -5,107 +5,79 @@
  */
 package model.bean;
 
+import java.sql.Date;
+
 /**
  *
  * @author Senai
  */
 public class PedidoDTO {
     private int idPedido;
-    private String nome;
-    private int fkIdCategoria;
-    private int fkIdTamanho;
-    private String descricao;
-    private float preco;
-    private int estoque;
-    private String imagem;
     private int fkIdUsuario;
+    private int fkIdEndereco;
+    private float precoTotal;
+    private Date dataPedido;
+    private String tipoPagamento;
 
     public PedidoDTO() {
     }
 
-    public PedidoDTO(int idPedido, String nome, int fkIdCategoria, int fkIdTamanho, String descricao, float preco, int estoque, String imagem, int fkIdUsuario) {
+    public PedidoDTO(int idPedido, int fkIdUsuario, int fkIdEndereco, float precoTotal, Date dataPedido, String tipoPagamento) {
         this.idPedido = idPedido;
-        this.nome = nome;
-        this.fkIdCategoria = fkIdCategoria;
-        this.fkIdTamanho = fkIdTamanho;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.estoque = estoque;
-        this.imagem = imagem;
         this.fkIdUsuario = fkIdUsuario;
+        this.fkIdEndereco = fkIdEndereco;
+        this.precoTotal = precoTotal;
+        this.dataPedido = dataPedido;
+        this.tipoPagamento = tipoPagamento;
     }
 
-    public int getIdPedido() {
+    public int getIdPedido(){
         return idPedido;
     }
 
-    public void setIdPedido(int idPedido) {
+    public void setIdPedido(int idPedido){
         this.idPedido = idPedido;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getFkIdCategoria() {
-        return fkIdCategoria;
-    }
-
-    public void setFkIdCategoria(int fkIdCategoria) {
-        this.fkIdCategoria = fkIdCategoria;
-    }
-
-    public int getFkIdTamanho() {
-        return fkIdTamanho;
-    }
-
-    public void setFkIdTamanho(int fkIdTamanho) {
-        this.fkIdTamanho = fkIdTamanho;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public float getPreco() {
-        return preco;
-    }
-
-    public void setPreco(float preco) {
-        this.preco = preco;
-    }
-
-    public int getEstoque() {
-        return estoque;
-    }
-
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
-    }
-
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
     }
 
     public int getFkIdUsuario() {
         return fkIdUsuario;
     }
 
-    public void setFkIdUsuario(int fkIdUsuario) {
+    public void setFkIdUsuario(int fkIdUsuario){
         this.fkIdUsuario = fkIdUsuario;
     }
 
+    public int getFkIdEndereco() {
+        return fkIdEndereco;
+    }
+
+    public void setFkIdEndereco(int fkIdEndereco){
+        this.fkIdEndereco = fkIdEndereco;
+    }
+
+    public float getPrecoTotal() {
+        return precoTotal;
+    }
+
+    public void setPrecoTotal(float precoTotal){
+        this.precoTotal = precoTotal;
+    }
+
+    public Date getDataPedido() {
+        return dataPedido;
+    }
+
+    public void setDataPedido(Date dataPedido){
+        this.dataPedido = dataPedido;
+    }
+
+    public String getTipoPagamento(){
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(String tipoPagamento){
+        this.tipoPagamento = tipoPagamento;
+    }
+    
     
 }

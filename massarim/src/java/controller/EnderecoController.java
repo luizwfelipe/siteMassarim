@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.bean.EnderecoDTO;
 import model.dao.EnderecoDAO;
 
@@ -21,7 +22,7 @@ import model.dao.EnderecoDAO;
  *
  * @author Admin
  */
-@WebServlet(name = "EnderecoController", urlPatterns = {"/endereco", "/cadastrarEndereco", "/meusEnderecos"})
+@WebServlet(name = "EnderecoController", urlPatterns = {"/endereco", "/cadastrarEndereco", "/meusEnderecos", "/escolherEndereco"})
 public class EnderecoController extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,7 +51,6 @@ public class EnderecoController extends HttpServlet {
                     }
                 }
             }
-
             EnderecoDAO dao = new EnderecoDAO();
             List<EnderecoDTO> enderecos = dao.readEnderecoUnico(idDoUsuario);
             request.setAttribute("enderecos", enderecos);
@@ -113,6 +113,13 @@ public class EnderecoController extends HttpServlet {
             EnderecoDAO dao = new EnderecoDAO();
             dao.create(novoEndereco);
             response.sendRedirect("./endereco");
+        }else if (url.equals("/escolherEndereco")) {
+            EnderecoDTO enderecoSelecionado = new EnderecoDTO();
+            enderecoSelecionado.setRua(request.getParameter("rua"));
+            enderecoSelecionado.setNumero(Integer.parseInt(request.getParameter("numero")));
+            HttpSession session = request.getSession();
+            session.setAttribute("enderecoSelecionado", enderecoSelecionado);
+            response.sendRedirect("./pagamento");
         }
     }
 

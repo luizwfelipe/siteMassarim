@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         sacolaContainer.innerHTML = "";
 
-        storedCart.forEach((produto, index) => {
+        storedCart.forEach((produto,index) => {
             const divP = document.createElement("div");
             divP.classList.add("produto");
 
@@ -35,9 +35,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
             divP.appendChild(divImg);
             divP.appendChild(divInfo);
-
             sacolaContainer.appendChild(divP);
-
             const inputQuantidade = divParteBaixo.querySelector('input.quantidade');
             const btnDecrementar = divParteBaixo.querySelector('.btn-decrementar');
             const btnIncrementar = divParteBaixo.querySelector('.btn-incrementar');
@@ -53,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             });
 
-            btnIncrementar.addEventListener('click', function() {
+            btnIncrementar.addEventListener('click', function(){
                 const currentQuantity = parseInt(inputQuantidade.value);
                 if (currentQuantity < produto.estoque) {
                     inputQuantidade.value = currentQuantity + 1;
@@ -63,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             });
 
-            inputQuantidade.addEventListener('change', function() {
+            inputQuantidade.addEventListener('change', function(){
                 const newQuantity = parseInt(this.value);
                 if (newQuantity <= 0){
                     removeFromCart(index);
@@ -77,29 +75,25 @@ document.addEventListener("DOMContentLoaded", function(){
                 calculateTotal(storedCart);
             });
 
-            btnDelete.addEventListener('click', function() {
+            btnDelete.addEventListener('click', function(){
                 removeFromCart(index);
             });
         });
 
         calculateTotal(storedCart);
     }
-
     function removeFromCart(index){
         let cart = JSON.parse(localStorage.getItem('cart'));
         cart.splice(index, 1);
         atualizarLocalStorage(cart);
         carregarCarrinho();
     }
-
     function calculateTotal(cart){
-        const total = cart.reduce((acc, curr) => acc + (curr.preco * curr.quantidade), 0);
+        const total = cart.reduce((acc, curr)=>acc+(curr.preco *curr.quantidade), 0);
         document.querySelector('#tt-revisao span').textContent = 'R$ ' + total.toFixed(2);
     }
-
     function atualizarLocalStorage(cart){
         localStorage.setItem('cart', JSON.stringify(cart));
     }
-
     carregarCarrinho();
 });

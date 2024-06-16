@@ -1,13 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Buenard:wght@400;700&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Lexend+Deca:wght@100..900&family=Libre+Bodoni:ital,wght@0,400..700;1,400..700&family=Sofia+Sans+Extra+Condensed:ital,wght@0,1..1000;1,1..1000&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
-    font-weight: 500;
+    font-family: 'Prompt', 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: -0.05vw;
+}
+
+input{
+    text-transform: none;
 }
 
 header{
@@ -211,4 +217,60 @@ main{
     font-size: 0.7vw;
     border: none;
     cursor: not-allowed;
+}
+
+.btn-decrementar{
+    font-size: 1.1vw;
+    font-weight: 700;
+    border-start-start-radius: 10px;
+    border-end-start-radius: 10px;
+    border: none;
+    color: #f2f2f2;
+    background-color: #BF9B6F;
+    width: 0.7vw;
+    cursor: pointer;
+    margin-inline: 0.2vw;
+}
+
+.btn-incrementar{
+    font-size: 1.1vw;
+    font-weight: 700;
+    border-start-end-radius: 10px;
+    border-end-end-radius: 10px;
+    border: none;
+    color: #f2f2f2;
+    background-color: #BF9B6F;
+    width: 0.7vw;
+    cursor: pointer;
+    margin-inline: 0.2vw;
+}
+
+.parteBaixo .quantidade{
+    width: 5%;
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid #313131;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-inline: 0.2vw;
+}
+
+.parteBaixo .quantidade:focus {
+    outline: none;
+    border-bottom: 1px solid #BF9B6F;
+}
+
+.botaoTira{
+    margin-left: 0;
+    border: none;
+    background-color: #1a1a1a;
+    color: #f2f2f2;
+    width: 1vw; 
+    height: 1.7vh;
+    font-weight: 700;
+    font-size: 0.6vw;
+    cursor: pointer;
+    margin-left: 20%;
 }

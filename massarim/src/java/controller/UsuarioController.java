@@ -38,11 +38,11 @@ public class UsuarioController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
-        if (url.equals("/cadastrar")) {
+        if (url.equals("/cadastrar")){
             String nextPage = "/WEB-INF/jsp/cadastro.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        } else if (url.equals("/login")) {
+        } else if (url.equals("/login")){
             String nextPage = "/WEB-INF/jsp/login.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
@@ -76,7 +76,7 @@ public class UsuarioController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getServletPath();
-        if (url.equals("/cadastrar")) {
+        if (url.equals("/cadastrar")){
             System.out.println("Está no dopost");
             UsuarioDTO user = new UsuarioDTO();
             user.setNome(request.getParameter("nome").equals("") ? "" : request.getParameter("nome"));
@@ -91,7 +91,7 @@ public class UsuarioController extends HttpServlet {
             userCreate.cadastrarUsuario(user);
 
             response.sendRedirect("./login");
-        } else if (url.equals("/logar")) {
+        } else if (url.equals("/logar")){
             
             UsuarioDTO user = new UsuarioDTO();
             user.setEmail(request.getParameter("email"));
@@ -99,10 +99,10 @@ public class UsuarioController extends HttpServlet {
 
             UsuarioDAO userLogin = new UsuarioDAO();
             user = userLogin.login(user);
-            if (user.getIdUsuario() > 0) {
+            if (user.getIdUsuario() > 0){
                 Cookie cookie = new Cookie("logar",Integer.toString(user.getIdUsuario()));
                 response.addCookie(cookie);
-                if (user.getAdmin() == 1) {
+                if (user.getAdmin() == 1){
                     response.sendRedirect("./cadastrar-produto");
                 } else {
                     response.sendRedirect("./home");

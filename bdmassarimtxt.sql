@@ -43,10 +43,10 @@ CREATE TABLE produto(
 
 CREATE TABLE endereco(
 	idEndereco INT AUTO_INCREMENT PRIMARY KEY,
-    nomeDestinatario VARCHAR(95),
+    fkIdUsuario INT,
     cep CHAR(9),
     rua VARCHAR(100),
-    numero VARCHAR(9),
+    numero INT,
     complemento VARCHAR(50),
     referencia VARCHAR(100),
     bairro VARCHAR(45),
@@ -57,24 +57,23 @@ CREATE TABLE endereco(
 
 CREATE TABLE pedido(
     idPedido INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(45),
-    categoria VARCHAR(40),
-    descricao TINYTEXT,
-    preco FLOAT,
-    estoque INT,
-    horario DATETIME,
     fkIdUsuario INT,
-    FOREIGN KEY (fkIdUsuario) REFERENCES usuario(idUsuario)
+    fkIdEndereco INT,
+    precoTotal FLOAT,
+    dataPedido DATE,
+    tipoPagamento VARCHAR(45),
+    FOREIGN KEY (fkIdUsuario) REFERENCES usuario(idUsuario),
+    FOREIGN KEY (fkIdEndereco) REFERENCES endereco(idEndereco)
 );
 
-CREATE TABLE pedidoHistorico(
-	idHistorico INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(45),
-    categoria VARCHAR(40),
-    descricao TINYTEXT,
-    preco FLOAT,
-    estoque INT,
-	horario DATE
+CREATE TABLE pedidoProduto(
+    idPedidoProduto INT AUTO_INCREMENT PRIMARY KEY,
+    fkIdPedido INT,
+    fkIdProduto INT,
+    quantidade INT,
+    precoUnidade FLOAT,
+    FOREIGN KEY (fkIdPedido) REFERENCES pedido(idPedido),
+    FOREIGN KEY (fkIdProduto) REFERENCES produto(idProduto)
 );
 
 SELECT * FROM usuario;
@@ -84,6 +83,7 @@ VALUES ('Luiz', '123', 'luiz@gmail.com', '123.456.789-00', '(11)98765-4321', '20
 ('admin', 'admin', 'admin@gmail.com', '123.456.789-00', '(11)98765-4321', '2007-05-04', 1);
 
 
+
 INSERT INTO categorias (nome) VALUES
 ('Vestidos'),
 ('Saias'),
@@ -91,5 +91,5 @@ INSERT INTO categorias (nome) VALUES
 ('Sapatos'),
 ('Camisas');
 
-DELIMITER $
-CREATE PROCEDURE 
+INSERT INTO produto (nome, fkIdCategoria,descricao,preco ,estoque ,imagem) VALUES
+('SALTO PRETO', 4,'salto lindo, disponível na cor preta, clássico, chique e vesátil.',199.99,9,'assets/sapato.jpg');

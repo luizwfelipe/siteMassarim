@@ -5,11 +5,13 @@
  */
 package model.bean;
 
+import java.io.Serializable;
 /**
  *
  * @author Admin
  */
-public class EnderecoDTO {
+public class EnderecoDTO implements Serializable{
+    private static final long versaoDoSerializable = 1L;
     private int idEndereco;
     private int fkIdUsuario;
     private String cep;
