@@ -32,7 +32,7 @@ header img{
 header h2{
     font-size: 2vw;
     color: #202020;
-    font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+    font-family: 'Prompt', 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
     font-weight: 800;
 }
 
@@ -204,7 +204,7 @@ main{
     transition: 1s;
 }
 
-#cep #input-cep input:focus {
+#cep #input-cep input:focus{
     outline: none;
     border-bottom: 1px solid #000000;
 }
@@ -273,4 +273,147 @@ main{
     font-size: 0.6vw;
     cursor: pointer;
     margin-left: 20%;
+}
+
+@media screen and (max-width:768px){
+    #revisao-sacola{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1vw;
+    }
+
+    #container-revisao{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 50vh;
+        overflow-y: scroll;
+        margin-inline: 1vw;
+        align-items: center;
+    }
+
+    #container-revisao .produto{
+        height: 30%;
+        width: 95%;
+    }
+    .container-img{
+        width: 60%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .container-img img{
+        max-width: 100%;
+    }
+
+    #container-revisao .parteCima h3{
+        font-size: 90%;
+        font-weight: 700;
+    }
+
+    #container-revisao .parteBaixo #preco{
+        font-size: 70%;
+        font-weight: 700;
+    }
+
+
+    .btn-decrementar{
+        font-size: 100%;
+        font-weight: 700;
+        border-start-start-radius: 10px;
+        border-end-start-radius: 10px;
+        border: none;
+        color: #f2f2f2;
+        background-color: #BF9B6F;
+        width: 5%;
+        cursor: pointer;
+    }
+    
+    .btn-incrementar{
+        font-size: 100%;
+        font-weight: 700;
+        border-start-end-radius: 10px;
+        border-end-end-radius: 10px;
+        border: none;
+        color: #f2f2f2;
+        background-color: #BF9B6F;
+        width: 5%;
+        cursor: pointer;
+    }
+
+    .parteBaixo .quantidade{
+        min-width: 20%;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid #313131;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .parteBaixo .quantidade:focus {
+        outline: none;
+        border-bottom: 1px solid #BF9B6F;
+    }
+    .botaoTira{
+        margin-left: 0;
+        border: none;
+        background-color: #1a1a1a;
+        color: #f2f2f2;
+        width: 10%; 
+        height: 17%;
+        font-weight: 700;
+        font-size:100%;
+        cursor: pointer;
+        margin-inline: auto;
+    }
+    .confirmar-revisao{
+        margin-top: 10%;
+        width: 90%;
+    }
+
+
+    .confirmar-revisao .info-confirmar{
+        font-size: 70%;
+    }
+
+    
+
+    .confirmar-revisao #resumo-pedido{
+        font-size: 80%;
+        font-weight: 700;
+        color: #313131;
+    }
+    
+    #confirmarCompra {
+        width: 100%;
+        background-color: #BF9B6F;
+        padding: 0.2vw;
+        color: #f2f2f2;
+        font-weight: 700;
+        font-size: 100%;
+        border: none;
+        border-end-end-radius: 10px;
+        border-end-start-radius: 10px;
+        cursor: pointer;
+    }
+    #cep label {
+        margin-top: 10%;
+        font-size: 100%;
+        font-weight: 700;
+        color: #202020;
+    }
+    #cep #input-cep #calcularFrete {
+        background-color: #979797;
+        padding: 0.2vw;
+        color: #f2f2f2;
+        font-weight: 500;
+        font-size: 50%;
+        border: none;
+        cursor: not-allowed;
+    }
 }

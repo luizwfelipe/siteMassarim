@@ -7,10 +7,11 @@ package model.dao;
 
 import conexao.Conexao;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.bean.UsuarioDTO;
 
@@ -19,38 +20,35 @@ import model.bean.UsuarioDTO;
  * @author Senai
  */
 public class UsuarioDAO {
-     public UsuarioDTO readUsuarios(int id){
-        UsuarioDTO usuario = new UsuarioDTO();
+      public List<UsuarioDTO> readUsuarios() {
+        List<UsuarioDTO> listaUsuarios = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
-        try{
+        try {
             conexao = Conexao.conectar();
-            stmt = conexao.prepareStatement("SELECT idUsuario, nome, senha, email, cpf, telefone, dataNascimento, admin FROM usuario");
+            stmt = conexao.prepareStatement("SELECT * FROM usuario");
             rs = stmt.executeQuery();
-            if (rs.next()) {
-                usuario.setIdUsuario(rs.getInt("idUsuario"));
-                usuario.setNome(rs.getString("nome"));
-                usuario.setSenha(rs.getString("senha"));
-                usuario.setEmail(rs.getString("email"));
-                usuario.setCpf(rs.getString("cpf"));
-                usuario.setTelefone(rs.getString("telefone"));
-                usuario.setDataNascimento(rs.getDate("dataNascimento"));
-                usuario.setAdmin(rs.getInt("admin"));
+            while (rs.next()) {
+                UsuarioDTO usuarios = new UsuarioDTO();
+                usuarios.setIdUsuario(rs.getInt("idUsuario"));
+                usuarios.setNome(rs.getString("nome"));
+                usuarios.setSenha(rs.getString("senha"));
+                usuarios.setEmail(rs.getString("email"));
+                usuarios.setCpf(rs.getString("cpf"));
+                usuarios.setTelefone(rs.getString("telefone"));
+                usuarios.setDataNascimento(rs.getDate("dataNascimento"));
+                usuarios.setAdmin(rs.getInt("admin"));
+                listaUsuarios.add(usuarios);
             }
-        }catch(SQLException ex) {
+            rs.close();
+            stmt.close();
+            conexao.close();
+        } catch (SQLException ex) {
             ex.printStackTrace();
-        }finally {
-            try {
-                if (rs != null) rs.close();
-                if (stmt != null) stmt.close();
-                if (conexao != null) conexao.close();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
         }
-        return usuario;
+        return listaUsuarios;
     }
     
     public void cadastrarUsuario(UsuarioDTO user){
@@ -59,6 +57,29 @@ public class UsuarioDAO {
             PreparedStatement stmt = null;
             
             stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone, dataNascimento, admin) VALUES (?, ?, ?, ?, ?, ?, 2)");
+            stmt.setString(1, user.getNome());
+            stmt.setString(2, user.getSenha());
+            stmt.setString(3, user.getEmail());
+            stmt.setString(4, user.getCpf());
+            stmt.setString(5, user.getTelefone());
+            stmt.setDate(6, user.getDataNascimento());
+            
+            
+            stmt.executeUpdate();
+            
+            stmt.close();
+            conexao.close();
+            
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void cadastrarAdministrador(UsuarioDTO user){
+        try{
+            Connection conexao = Conexao.conectar();
+            PreparedStatement stmt = null;
+            
+            stmt = conexao.prepareStatement("INSERT INTO usuario (nome, senha, email, cpf, telefone, dataNascimento, admin) VALUES (?, ?, ?, ?, ?, ?, 1)");
             stmt.setString(1, user.getNome());
             stmt.setString(2, user.getSenha());
             stmt.setString(3, user.getEmail());
@@ -125,7 +146,7 @@ public class UsuarioDAO {
             ex.printStackTrace();
         }
     }
-    public void delete(int idProduto) {
+    public void delete(int idProduto){
     try {
         Connection conexao = Conexao.conectar();
         PreparedStatement stmt = conexao.prepareStatement("DELETE FROM usuario WHERE idUsuario = ?");

@@ -87,3 +87,39 @@ footer{
 #mass span{
     font-size: 0.6vw;
 }
+
+@media screen and (max-width:768px){
+    #cima #paginas a{
+        color: #202020;
+        font-weight: 700;
+        font-size: 60%;
+        font-family: 'Prompt', 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
+        padding: 0.5vw;
+    }
+    #cima #redes-sociais a{
+        font-weight: 900;
+        font-size: 60%;
+        padding: 0.5vw;
+    }
+    #baixo{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #616161;
+        font-size: 40%;
+        width: 50%;
+    }
+    
+    
+    #criado{
+        color: #616161;
+    }
+    
+    #criado span{
+        color: 202020s;
+    }
+    
+    #mass span{
+        font-size: 0.6vw;
+    }
+}

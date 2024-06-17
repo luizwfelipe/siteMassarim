@@ -6,6 +6,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page pageEncoding="UTF-8"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" %>
+<% 
+//AQUI EU CONFIRO SE O USUÁRIO ESTÁ LOGADO
+    HttpServletRequest require = (HttpServletRequest) request;
+    Cookie[] cookies = require.getCookies();
+    boolean logado = false;
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if ("logar".equals(cookie.getName())) {
+                logado = true;
+                break;
+            }
+        }
+    }
+%>
+<%
+    //AQUI EU FAÇO A CONFERÊNCIA DE ADMINISTRADOR (CASO FOR ADM, APARECER LINK DO PAINEL)
+    HttpServletRequest requireAdm = (HttpServletRequest) request;
+    Cookie[] cookieAdministrativo = requireAdm.getCookies();
+    boolean logarAdministativo = false;
+    if (cookieAdministrativo != null) {
+        for (Cookie cookieAdm : cookieAdministrativo) {
+            if ("logarAdministrador".equals(cookieAdm.getName())) {
+                logarAdministativo = true;
+                break;
+            }
+        }
+    }
+%>    
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,17 +50,41 @@
     <body>
         <header class="header">
                 <div class="up">
-                    <p>ENVIO PARA TODO O BRASIL</p>
+                    <c:choose>
+                        <c:when test="<%=logarAdministativo%>">
+                            <a id="painel-adm" href="./painel-adm">PAINEL ADMINISTRADOR</a>
+                        </c:when>
+                        <c:otherwise>
+                            <p>ENVIO PARA TODO O BRASIL</p>
+                        </c:otherwise>
+                     </c:choose>
+
                     <div class="user-bag">
-                        <div class="user"><a href="./login"><i class="fa-regular fa-user" style="color: #dfdfdf;"></i></a></div>
-                        <div id="bag"><i class="fa-solid fa-bag-shopping" id="bagOpen" style="color: #dfdfdf;"></i></div>
+                        <div class="user">
+                            <c:choose>
+                                <c:when test="<%=logado%>">
+                                    <a id="deslogar" href="./logout">Deslogar</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="./login"><i class="fa-solid fa-user" style="color: #dfdfdf;"></i></a>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                       <div id="bag"><i class="fa-solid fa-bag-shopping" id="bagOpen" style="color: #dfdfdf;"></i></div>
                     </div>
                 </div>
                 <div class="down">
-                    <div class="logo">
-                        <a href="./home"><img src="assets/logo-massarim.png" alt="menu"></a>
+                    <div id="down-cima">
+                        <div class="logo">
+                            <a href="./home"><img src="assets/logo-massarim.png" alt="menu"></a>
+                        </div>
+                        <div id="abrir-menu">
+                            <i class="fa-solid fa-bars" style="color: #202020;"></i>
+                        </div>
                     </div>
-                    <div class="categorias">
+                    <div id="down-baixo">
+                        <div id="fechar-down"><h3>X</h3></div>
+                        <div class="categorias">
                         <c:forEach items="${categorias}" var="categoria" >
                             <a href="./buscar-produtos?cat=${categoria.idCategorias}&busca=">${categoria.nome}</a>
                         </c:forEach>
@@ -42,6 +95,8 @@
                             <button class="btnPesquisa" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #202020;"></i></button>
                         </form>
                     </div>
+                </div>
+                    
                 </div>
         </header>
 

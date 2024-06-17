@@ -23,8 +23,9 @@ main{
 
 .container{
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-around;
     padding: 1vw;
     font-family: 'Sofia Sans Extra Condensed','Josefin Sans', 'Lexend Deca', sans-serif, Arial, Helvetica;
 }
@@ -38,18 +39,14 @@ main{
     width: 50%;
 }
 h1{
-    font-size: 2vw;
+    font-size: 150%;
     color: #313131;
     font-weight: 700;
+    margin-bottom: 15%;
 }
-
-#painel-titulo-img img{
-    width: 40vw;
-}
-
 
 #botoes{
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     padding-inline: 10vw;
@@ -60,20 +57,12 @@ h1{
     background-color: #313131;
     border: none;
     box-shadow: none;
-    width: 10vw;
-    font-size: 0.8vw;
-    height: 3vh;
+    width: 100%;
+    font-size: 150%;
+    font-weight: 700;
     margin-bottom: 1vh;
     cursor: pointer;
-}
-
-.btn-redireciona a{
-    text-decoration: none;
     color: #f2f2f2;
-    font-weight: 600;
-    width: 10vw;
 }
 
-#btn-cadastro-adm{
-    background-color: #360e0e;
-}
+

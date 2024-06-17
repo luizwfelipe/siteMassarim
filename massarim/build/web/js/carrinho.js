@@ -5,6 +5,20 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnAbrir = document.getElementById("bagOpen");
     const btnFechar = document.getElementById("fecharBag");
 
+/* ABRIR MOBILE*/
+        const downBaixo = document.getElementById("down-baixo");
+        const abrirMenuMobile = document.getElementById("abrir-menu");
+        const downFechar = document.getElementById("fechar-down");
+    
+        abrirMenuMobile.addEventListener("click", function() {
+            downBaixo.classList.add("aberto");
+        });
+    
+        downFechar.addEventListener("click", function() {
+            downBaixo.classList.remove("aberto");
+        });
+    
+/* fim*/
     btnAbrir.addEventListener("click", function(){
         sacola.classList.add("ativo");
         carregarCarrinho();
@@ -146,3 +160,5 @@ document.addEventListener("DOMContentLoaded", function() {
     
     carregarCarrinho();
 });
+
+

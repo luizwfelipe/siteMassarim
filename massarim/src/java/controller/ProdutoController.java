@@ -93,11 +93,11 @@ public class ProdutoController extends HttpServlet {
                     passa = true;
                 }
             }
-            if (passa) {
+            if (passa){
                 String nextPage = "/WEB-INF/jsp/revisao.jsp";
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                 dispatcher.forward(request, response);
-            } else {
+            }else {
                 String nextPage = "/WEB-INF/jsp/login.jsp";
                 RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
                 dispatcher.forward(request, response);

@@ -433,3 +433,197 @@ main{
     padding: 0.4vw;
     cursor: pointer;
 }
+
+#titulo-credito{
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#instrucoes-credito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#instrucoes-credito img {
+    width: 50%;
+}
+
+#titulo-debito{
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#instrucoes-debito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#instrucoes-debito img {
+    width: 50%;
+}
+
+
+@media screen and (max-width:768px){
+    main{
+        flex-direction: column;
+    }
+    #container {
+        margin-inline: 1vw;
+        border-radius: 20px;
+        width: 90%;
+        height: 70vh;
+        background-color: #f2f2f2;
+        display: flex;
+        box-shadow: 0px 2px 2px #cfcfcf;
+    }
+    #intrucoes-pix {
+        background-color: #D9D9D9;
+        padding: 5%;
+        border-end-end-radius: 10px;
+        border-end-start-radius: 10px;
+        font-size: 50%;
+        margin-top: 20%;
+        margin-bottom: 20%;
+    }
+
+
+    #parteCima-pix {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 30%;
+        width: 90%;
+        margin-bottom: 10%;
+        font-size: 50%;
+    }
+    #instrucoes-credito {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #instrucoes-credito img{
+        width: 50%;
+    }
+
+    #area-pagamento-credito {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0.5vw;
+        width: 100%;
+    }
+
+    .input-credito {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        font-size: 0.7vw;
+    }
+
+    #instrucoes-debito {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+    #instrucoes-debito img{
+        width: 50%;
+    }
+    #area-pagamento-debito {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0.5vw;
+        width: 100%;
+    }
+
+    .input-debito {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: space-between;
+        font-size: 0.7vw;
+    }
+    .btn-confirmar-compra {
+        color: #f2f2f2;
+        background-color: #BF9B6F;
+        border: none;
+        font-weight: 700;
+        border-radius: 5px;
+        font-size: 70%;
+        padding: 0.4vw;
+        cursor: pointer;
+        margin-top: 20%;
+    }
+    #container {
+        margin-inline: 1vw;
+        border-radius: 20px;
+        width: 90%;
+        height: 70vh;
+        background-color: #f2f2f2;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 2px 2px #cfcfcf;
+        align-items: center;
+    }
+    #container #tipo-pagamento {
+        width: 50%;
+        height: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+        #container #tipo-pagamento {
+            width: 50%;
+            height: 5%;
+            display: grid;
+            grid-template-columns: 2fr 2fr 2fr 2fr;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3%;
+
+        }
+        
+#instrucoes-h3-debito{
+    font-size: 100%;
+    color: #616161;
+    font-weight: 700;
+}
+    #instrucoes-h3{
+        font-size: 100%;
+        color: #616161;
+        font-weight: 700;
+    }
+    #pix.ativo {
+        margin-top: 20%;
+        display: flex;
+    }
+    .tipo {
+        height: 100%;
+        width: 100%;
+        color: #616161;
+        font-size: 1.2vw;
+        margin: 20%;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        transition: 1s;
+        cursor: pointer;
+        font-size: 50%;
+        margin-right: 25%;
+    }
+}

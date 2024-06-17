@@ -23,13 +23,12 @@
         <div class="container">
             <div id="painel-titulo-img">
                 <h1>PAINEL ADMINISTRATIVO</h1>
-                <img src="assets/painelimg.svg" alt="painel-adm">
             </div>
             <div id="botoes"> <!--div para agrupar os botao-->
-                <button class="btn-redireciona" id="btn-cadastro-adm"><a href="#">CADASTRAR ADM</a></button>
-                <button class="btn-redireciona"><a href="./cadastrar-produto">CADASTRAR</a></button>
-                <button class="btn-redireciona"><a href="#">EDITAR</a></button>
-                <button class="btn-redireciona"><a href="#">EXCLUIR</a></button>
+                <a href="./cadastro-de-administrador"><button class="btn-redireciona">CADASTRAR ADM</button></a>
+                <a href="./remover-usuario"><button class="btn-redireciona">REMOVER USUÁRIO</button></a>
+                <a href="./cadastrar-produto"><button class="btn-redireciona">CADASTRAR</button></a>
+                <a href="#"><button class="btn-redireciona">EXCLUIR</button></a>
             </div>
         </div>
     </main>

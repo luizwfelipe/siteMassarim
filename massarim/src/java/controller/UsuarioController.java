@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +16,16 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.bean.CategoriaDTO;
 import model.bean.UsuarioDTO;
+import model.dao.CategoriaDAO;
 import model.dao.UsuarioDAO;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "UsuarioController", urlPatterns = {"/cadastrar", "/cadastro", "/login", "/logar"})
+@WebServlet(name = "UsuarioController", urlPatterns = {"/cadastrar", "/cadastro", "/login", "/logar", "/cadastro-de-administrador", "/cadastrarAdministrador", "/remover-usuario"})
 public class UsuarioController extends HttpServlet {
 
     /**
@@ -38,14 +41,27 @@ public class UsuarioController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = request.getServletPath();
+        UsuarioDAO usuariosDAO = new UsuarioDAO();
+        List<UsuarioDTO> usuarios = usuariosDAO.readUsuarios();
+        request.setAttribute("usuarios", usuarios);
         if (url.equals("/cadastrar")){
             String nextPage = "/WEB-INF/jsp/cadastro.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
-        } else if (url.equals("/login")){
+        }else if (url.equals("/login")){
             String nextPage = "/WEB-INF/jsp/login.jsp";
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
             dispatcher.forward(request, response);
+        }else if (url.equals("/cadastro-de-administrador")){
+            String nextPage = "/WEB-INF/jsp/cadastroAdm.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            dispatcher.forward(request, response);
+        }else if (url.equals("/remover-usuario")){
+            String nextPage = "/WEB-INF/jsp/removerUsuario.jsp";
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
+            request.setAttribute("usuarios", usuarios);
+            dispatcher.forward(request, response);
+            
         }
     }
 
@@ -76,8 +92,8 @@ public class UsuarioController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getServletPath();
-        if (url.equals("/cadastrar")){
-            System.out.println("Está no dopost");
+        if (url.equals("/cadastrar")) {
+            System.out.println("chegou dopost");
             UsuarioDTO user = new UsuarioDTO();
             user.setNome(request.getParameter("nome").equals("") ? "" : request.getParameter("nome"));
             user.setSenha(request.getParameter("senha"));
@@ -91,7 +107,21 @@ public class UsuarioController extends HttpServlet {
             userCreate.cadastrarUsuario(user);
 
             response.sendRedirect("./login");
-        } else if (url.equals("/logar")){
+        } else if (url.equals("/cadastrarAdministrador")) {
+            UsuarioDTO user = new UsuarioDTO();
+            user.setNome(request.getParameter("nome").equals("") ? "" : request.getParameter("nome"));
+            user.setSenha(request.getParameter("senha"));
+            user.setEmail(request.getParameter("email"));
+            user.setCpf(request.getParameter("cpf"));
+            user.setTelefone(request.getParameter("telefone"));
+            user.setDataNascimento(Date.valueOf(request.getParameter("dataNascimento")));
+
+
+            UsuarioDAO adminCreate = new UsuarioDAO();
+            adminCreate.cadastrarAdministrador(user);
+
+            response.sendRedirect("./login");
+        }else if (url.equals("/logar")) {
             
             UsuarioDTO user = new UsuarioDTO();
             user.setEmail(request.getParameter("email"));
@@ -99,11 +129,13 @@ public class UsuarioController extends HttpServlet {
 
             UsuarioDAO userLogin = new UsuarioDAO();
             user = userLogin.login(user);
-            if (user.getIdUsuario() > 0){
+            if (user.getIdUsuario() > 0) {
                 Cookie cookie = new Cookie("logar",Integer.toString(user.getIdUsuario()));
                 response.addCookie(cookie);
-                if (user.getAdmin() == 1){
-                    response.sendRedirect("./cadastrar-produto");
+                if (user.getAdmin() == 1) {
+                     Cookie cookieAdministrativo = new Cookie("logarAdministrador", Integer.toString(user.getIdUsuario()));
+                    response.addCookie(cookieAdministrativo);
+                    response.sendRedirect("./painel-adm");
                 } else {
                     response.sendRedirect("./home");
                 }

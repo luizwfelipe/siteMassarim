@@ -135,3 +135,130 @@ main{
 .cartao a{
     text-decoration: none;
 }
+
+@media screen and (max-width:768px){
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .imagens{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .imagens img {
+        max-width: 100%;
+        border: 1px solid #202020;
+       }
+    .info-prod{
+        width: 80%;
+        margin-inline: 1vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #616161;
+    }
+    .info-prod #nome-preco{
+        width: 150%;
+        color: #616161;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    
+    .info-prod #nome-produto{
+        color: #202020;
+        font-size: 80%;
+        font-weight: 800;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .info-prod #preco-produto{
+        font-size: 70%;
+        font-weight: 700;
+    }
+    
+    .info-prod .addBag{
+        margin-top: 2vh;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+    
+    .info-prod .descricao p{
+        color: #202020;
+        font-size: 60%;
+        font-weight: 600;
+        margin-top: 2vh;
+    }
+    
+    .info-prod .addBag input:focus{
+        outline: none;
+    }
+    
+    .tamanho{
+        width: 100%;
+        margin-top: 2vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 0;
+        align-items: center;
+    }
+    .tamanho h4{
+        margin-left: 0;
+        color: #202020;
+        font-size: 60%;
+        font-weight: 700;
+        justify-content: center;
+    }
+    
+    .tamanho h5{
+        font-size: 60%;
+        margin-left: 0;
+        color: #a7a7a7;
+        font-weight: 700;
+    }
+    .tamanho h5 span{
+        color: #202020;
+        font-weight: 700;
+    }
+    
+    .info-prod .addBag{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .info-prod .addBag button{
+        margin-top: 2vh;
+        font-size: 100%;
+        font-weight: 700;
+        color: #f2f2f2;
+        width: 100%;
+        height: 40%;
+        background-color: #BF9B6F;
+        border: none;
+        cursor: pointer;
+    }
+    .cartao a{
+        text-decoration: none;
+    }
+    .info-prod .addBag button{
+        margin-top: 2vh;
+        font-size: 80%;
+        font-weight: 700;
+        color: #f2f2f2;
+        width: 140%;
+        height: 40%;
+        background-color: #BF9B6F;
+        border: none;
+        cursor: pointer;
+    }
+}
