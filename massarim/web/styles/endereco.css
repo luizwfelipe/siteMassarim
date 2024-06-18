@@ -55,20 +55,19 @@ main{
     display: flex;
 }
 
-.endereco-unico{
+.endereco-unico {
     background-color: #fff;
     box-shadow: 0px 2px 2px #cfcfcf;
     border-radius: 5px;
-    width: 50%;
+    width: 70%;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-around;
     font-size: 0.6vw;
     margin: 0.5vw;
     margin-inline: 1vw;
     flex-shrink: 0;
 }
-
 
 
 #hrline{
@@ -121,7 +120,7 @@ form{
     width: 100%;
 }
 
-#inputs-direita, #inputs-esquerda{
+#inputs-direita, #inputs-meio, #inputs-esquerda{
     width: 48%;
     display: flex;
     flex-direction: column;
@@ -287,15 +286,17 @@ form{
         background-color: #fff;
         box-shadow: 0px 2px 2px #cfcfcf;
         border-radius: 5px;
-        width: 70%;
+        width: 90%;
+        height: 40%;
         display: flex;
-        align-items: center;
+        align-items: start;
         justify-content: space-around;
-        font-size: 100%;
+        font-size: 60%;
         margin: 0.5vw;
         margin-inline: 1vw;
         flex-shrink: 0;
     }
+    
     .endereco-unico h3 {
         font-size: 70%;
         color: #616161;
