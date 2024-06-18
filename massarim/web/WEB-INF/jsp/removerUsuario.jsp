@@ -11,21 +11,31 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>remover usuário * MSSRM</title>
+        <script src="https://kit.fontawesome.com/72aebe393c.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="styles/remover-usuario.css">
     </head>
     <body>
-        <h1>REMOVER USUÁRIO</h1>
+        <main>
+            <h1>REMOVER USUÁRIO</h1>
         <div class="containerUsuario">
+            <div id="cartao-dados">
+                <h4>IDENTIFICAÇÃO</h4>
+                <h4>NOME</h4>
+                <h4>EMAIL</h4>
+                <h4>TELEFONE</h4>
+                <h4>AÇÃO</h4>
+            </div>
             <c:forEach var="usuarios" items="${usuarios}">
                 <div class="cartao">
-                    <h5 id="id-usuario">identificação: <span>${usuarios.idUsuario}</span></h5>
-                    <h5 id="nome-usuario">${usuarios.nome}</h5>
-                    <div id="contato-usuario">
-                        <p>contatos:</p>
-                        <p id="email-usuario">${usuarios.email}</p>
-                        <p id="telefone-usuario">${usuarios.telefone}</p>
+                        <h5 id="id-usuario">${usuarios.idUsuario}</h5>
+                        <h5 id="nome-usuario">${usuarios.nome}</h5>
+                        <h5 id="email-usuario">${usuarios.email}</h5>
+                        <h5 id="telefone-usuario">${usuarios.telefone}</h5>
+                        <h5><i class="fa-solid fa-trash" style="color: #f2f2f2;"></i></h5>
                     </div>
-                </div>
             </c:forEach>
         </div>
+        </main>
+        
     </body>
 </html>
